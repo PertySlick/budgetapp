@@ -1,13 +1,6 @@
-[29-May-2017 22:15:14 America/Chicago] Class 'Controller' not found [/home/troush/public_html/328/budgetapp/index.php:28]
-[29-May-2017 22:15:14 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:2172] Base->error()
-[29-May-2017 22:15:40 America/Chicago] syntax error, unexpected end of file, expecting function (T_FUNCTION) [/home/troush/public_html/328/budgetapp/control/controller.php:50]
-[29-May-2017 22:15:40 America/Chicago] [328/budgetapp/vendor/composer/ClassLoader.php:322] Composer\Autoload\includeFile('/home/troush/public_html/328/budgetapp/vendor/composer/../../control/controller.php')
-[29-May-2017 22:15:40 America/Chicago] [328/budgetapp/index.php:28] spl_autoload_call('Controller')
-[29-May-2017 22:16:02 America/Chicago] Invalid method execute
-[29-May-2017 22:16:02 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:2178] Base->error()
-[29-May-2017 22:16:02 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:2147] user_error()
-[29-May-2017 22:16:02 America/Chicago] [328/budgetapp/index.php:47] Base->__call()
-[29-May-2017 22:16:07 America/Chicago] Invalid method execute
-[29-May-2017 22:16:07 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:2178] Base->error()
-[29-May-2017 22:16:07 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:2147] user_error()
-[29-May-2017 22:16:07 America/Chicago] [328/budgetapp/index.php:47] Base->__call()
+[29-May-2017 22:56:54 America/Chicago] HTTP 404 (GET /readme.md)
+[29-May-2017 22:56:54 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
+[29-May-2017 22:56:54 America/Chicago] [328/budgetapp/index.php:47] Base->run()
+[29-May-2017 22:57:23 America/Chicago] HTTP 404 (GET /readme.md)
+[29-May-2017 22:57:23 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
+[29-May-2017 22:57:23 America/Chicago] [328/budgetapp/index.php:47] Base->run()
