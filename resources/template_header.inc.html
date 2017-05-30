@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <title>Blogs: {{ @title }}</title>
-  <meta name="description" content="{{ 'Blogs: ' . @desc }}" />
+  <meta name="description" content="{{ 'BudgetApp: ' . @description }}" />
   <meta name="author" content="Timothy Roush" />
   <meta name="author" content="Jeff Pratt" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,12 +23,45 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-                  <!-- UN COMMENT THIS IF FONT AWESOME NEEDED
-                  <check if="{{ @fontAwesome }}">
-                    <!- FONT AWESOME ICONS ->
-                    <script src="https://use.fontawesome.com/a5cce48296.js"></script>
-                  </check> -->
+  <check if="{{ @fontAwesome }}">
+    <!- FONT AWESOME ICONS ->
+    <script src="https://use.fontawesome.com/a5cce48296.js"></script>
+  </check>
 </head>
 <body>
 
 <!-- IF USING A NAVIGATION MENU/BAR PLACE HERE FOR ALL PAGES -->
+<header>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">BudgetApp</a>
+      </div>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="nav navbar-nav">
+          <check if="{{ @user }}">
+            <true>
+              <li class="active"><a href="#" title="My Budget Summary">Summary</a></li>
+              <li><a href="#" title="Manage Your Income">My Income</a></li>
+              <li><a href="#" title="Manage Your Expenses">My Expenses</a></li>
+              <li><a href="#" title="Manage Your Budget">My Budget</a></li>
+            </true>
+            <false>
+              <li class="active"><a href="" title="Home">Home</a></li>
+              <li><a href="#" title="Learn About This Site">About Us</a></li>
+              <li><a href="#" title="Register With Us">Sign Up!</a></li>
+              <li><a href="#" title="Log In To Your Budget">Log In</a></li>
+            </false>
+          </check>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

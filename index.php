@@ -29,7 +29,7 @@
     $f3->set('fontAwesome', false);         // Should include load fontAwesome?
 
     // Check if visitor is logged in
-    //TODO: User Check
+    $controller->checkLogin($f3);
     
     
     // Begin Route Definitions

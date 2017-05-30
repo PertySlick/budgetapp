@@ -31,7 +31,10 @@ class Controller {
      * TODO
      */
     public function home($f3) {
-        // TODO
+        $f3->mSet(array(
+            'title' => 'BudgetApp',
+            'description' => 'Welcome To BudgetApp'
+        ));
     }
 
 
@@ -43,7 +46,6 @@ class Controller {
     public function checkLogin($f3) {
         if ($_SESSION['user'] === true) {
             $f3->set('user', true);
-            $f3->set('current', $_SESSION['current']);
         } else {
             $f3->set('user', false);
         }

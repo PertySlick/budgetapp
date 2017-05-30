@@ -5,3 +5,7 @@
  * Assignment: Final Budget App
  * Description:  All CSS styles for this site
  */
+
+body {
+  padding-top: 50px;
+}
