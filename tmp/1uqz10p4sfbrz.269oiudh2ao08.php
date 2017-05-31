@@ -10,8 +10,8 @@
   -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Blogs: {{ @title }}</title>
-  <meta name="description" content="{{ 'BudgetApp: ' . @description }}" />
+  <title>Blogs: <?= $title ?></title>
+  <meta name="description" content="<?= 'BudgetApp: ' . $description ?>" />
   <meta name="author" content="Timothy Roush" />
   <meta name="author" content="Jeff Pratt" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +23,10 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <check if="{{ @fontAwesome }}">
+  <?php if ($fontAwesome): ?>
     <!- FONT AWESOME ICONS ->
     <script src="https://use.fontawesome.com/a5cce48296.js"></script>
-  </check>
+  <?php endif; ?>
 </head>
 <body>
 
@@ -45,20 +45,20 @@
       </div>
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">
-          <check if="{{ @user }}">
-            <true>
+          <?php if ($user): ?>
+            
               <li class="active"><a href="#" title="My Budget Summary">Summary</a></li>
               <li><a href="#" title="Manage Your Income">My Income</a></li>
               <li><a href="#" title="Manage Your Expenses">My Expenses</a></li>
               <li><a href="#" title="Manage Your Budget">My Budget</a></li>
-            </true>
-            <false>
+            
+            <?php else: ?>
               <li class="active"><a href="" title="Home">Home</a></li>
               <li><a href="#" title="Learn About This Site">About Us</a></li>
               <li><a href="#" title="Register With Us">Sign Up!</a></li>
               <li><a href="login" title="Log In To Your Budget">Log In</a></li>
-            </false>
-          </check>
+            
+          <?php endif; ?>
           
         </ul>
       </div>

@@ -4,3 +4,159 @@
 [29-May-2017 22:57:23 America/Chicago] HTTP 404 (GET /readme.md)
 [29-May-2017 22:57:23 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
 [29-May-2017 22:57:23 America/Chicago] [328/budgetapp/index.php:47] Base->run()
+[31-May-2017 16:38:07 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:38:07 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:38:07 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:38:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:40:27 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:27 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:27 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:27 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:40:29 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:29 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:29 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:40:31 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:31 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:31 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:40:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:41:12 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:12 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:12 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:41:21 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:21 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:21 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:41:51 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:51 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:51 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:41:51 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:42:34 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:34 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:34 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:34 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:42:35 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:35 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:35 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:42:35 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:43:42 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:43:42 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:43:42 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:43:42 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:44:52 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:52 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:52 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:52 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:44:54 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:54 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:54 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:44:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:45:14 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:14 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:14 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:14 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:45:16 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:16 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:16 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:16 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:45:18 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:18 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:18 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:45:19 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:19 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:19 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:19 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:45:21 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:21 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:21 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:45:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:47:22 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:22 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:22 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:47:25 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:25 America/Chicago] PHP Warning:  include(/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php): failed to open stream: No such file or directory in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:25 America/Chicago] PHP Warning:  include(): Failed opening '/home/jpratt/public_html/328/budgetapp/vendor/composer/../bcosca/fatfree-core/base.php' for inclusion (include_path='.:/opt/php70/lib/php') in /home/jpratt/public_html/328/budgetapp/vendor/composer/ClassLoader.php on line 444
+[31-May-2017 16:47:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:49:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:51:03 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:53:42 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:53:45 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:54:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Base' not found in /home/jpratt/public_html/328/budgetapp/index.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/jpratt/public_html/328/budgetapp/index.php on line 26
+[31-May-2017 16:56:12 America/Chicago] HTTP 404 (GET /login.html)
+[31-May-2017 16:56:12 America/Chicago] [328/budgetapp/vendor/bcosca/fatfree-core/base.php:1645] Base->error()
+[31-May-2017 16:56:12 America/Chicago] [328/budgetapp/index.php:46] Base->run()

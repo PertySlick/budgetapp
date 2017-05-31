@@ -21,7 +21,7 @@
     // Dependancy And Session Initialization
     require_once ('vendor/autoload.php');
     session_start();
-
+    
     // Initiate fat-free, and Controller objects and set defaults
     $f3 = Base::instance();                 // Instance of Fat Free object
     $f3->set('DEBUG', 3);                   // Set Fat Free debug level
@@ -40,7 +40,18 @@
       echo \Template::instance()->render('view/home.html');
     });
     
+    $f3->route('GET /login', function($f3) use ($controller) {
+      $controller->home($f3);
+      echo \Template::instance()->render('view/login.html');
+    });
     
+    $f3->route('GET /addexpense', function($f3) use ($controller) {
+      $controller->home($f3);
+      echo \Template::instance()->render('view/addexpense.html');
+    });
+        
+        
+      
     // Execute Route
     
     

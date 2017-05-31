@@ -9,3 +9,11 @@
 body {
   padding-top: 50px;
 }
+
+.login-cont{
+  background-color:white;
+}
+
+.big-lbl {
+        height: 25px;
+}
