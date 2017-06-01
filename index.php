@@ -49,6 +49,16 @@
       $controller->home($f3);
       echo \Template::instance()->render('view/addexpense.html');
     });
+    
+    $f3->route('GET /addincome', function($f3) use ($controller) {
+      $controller->home($f3);
+      echo \Template::instance()->render('view/addincome.html');
+    });
+    
+    $f3->route('GET /signup', function($f3) use ($controller) {
+      $controller->home($f3);
+      echo \Template::instance()->render('view/signup.html');
+    });
         
         
       
