@@ -64,8 +64,17 @@ class DbOperator
 // METHODS - USER OPERATIONS
 
 
-    public function placeHolder() {
-      //TODO
+    public function checkCredentials($email, $password) {
+      $stmt = $this->_conn->prepare("SELECT * FROM users WHERE email=:email");
+      $stmt->bindParam(":email", $email);
+      $stmt->execute();
+      
+      if ($stmt->rowCount() > 0) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      }
+      
+      
+      
     }
 
 
