@@ -64,17 +64,32 @@ class DbOperator
 // METHODS - USER OPERATIONS
 
 
+    /**
+     * Checks the supplied credential against the records stored in th users
+     * database.  If a record is found with a matching email address, the data
+     * for that record is retrieved.  The password values are then compared. If
+     * they match, an array of user data is then returned for Controller use.
+     * @param $email String email used in login attempt
+     * @param $password String hashed value of password used in login attempt
+     * @return array of user data if validated, null otherwise
+     */
     public function checkCredentials($email, $password) {
-      $stmt = $this->_conn->prepare("SELECT * FROM users WHERE email=:email");
-      $stmt->bindParam(":email", $email);
-      $stmt->execute();
-      
-      if ($stmt->rowCount() > 0) {
+        $stmt = $this->_conn->prepare("SELECT * FROM users WHERE email=:email");
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      }
-      
-      
-      
+
+            if ($password === $result['password']) {
+                return array(
+                'userName' => $result['userName'],
+                'id' => $result['id'],
+                'email' => $result['email']
+                );
+            }
+        }
+        return null;
     }
 
 

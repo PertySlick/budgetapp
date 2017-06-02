@@ -36,6 +36,31 @@ class Controller {
             'description' => 'Welcome To BudgetApp'
         ));
     }
+    
+    
+    public function login($f3) {
+        // If user is already logged in, redirect
+        if (checkLogin($f3)) $f3->reroute('home');
+        
+        // If POST data indicates login attempt:
+        if (isset($_POST['action'] && $_POST['action'] == "login")) {
+            $email = $_POST['email'];
+            $password = sha1($_POST['password']);
+            $result = $operator->userLogin($email, $password);
+            
+            if ($result) {
+                $username = $result['userName'];
+                $id = $result['id'];
+                $email = $result['password'];
+                $newUser = new User($username, $id, $email);
+                
+                $_SESSION['userStatus'] = true;
+                $_SESSION['user'] = $newUser;
+                
+                $f3->reroute('home');
+            }
+        }
+    }
 
 
     /**
@@ -44,10 +69,12 @@ class Controller {
      * @param $f3 fat-free instance to operate with
      */
     public function checkLogin($f3) {
-        if ($_SESSION['user'] === true) {
-            $f3->set('user', true);
+        if ($_SESSION['userStatus'] === true) {
+            $f3->set('userStatus', true);
+            return true;
         } else {
-            $f3->set('user', false);
+            $f3->set('userStatus', false);
+            return false;
         }
     }
 }
