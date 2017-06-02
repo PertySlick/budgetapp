@@ -16,7 +16,7 @@
  * @copyright 2017
  * @version 1.0
  */
-abstract class User {
+class User {
 
 
 // CONSTRUCTOR
@@ -97,3 +97,4 @@ abstract class User {
     public function setEmail($value) {
         $this->email = $value;
     }
+}

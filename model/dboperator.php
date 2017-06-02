@@ -74,13 +74,14 @@ class DbOperator
      * @return array of user data if validated, null otherwise
      */
     public function checkCredentials($email, $password) {
+        echo $email . $password;
         $stmt = $this->_conn->prepare("SELECT * FROM users WHERE email=:email");
         $stmt->bindParam(":email", $email);
         $stmt->execute();
-
+        
         if ($stmt->rowCount() > 0) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        echo 'Password entered: ' . $password . "Password stored: " . $result['password'];
             if ($password === $result['password']) {
                 return array(
                 'userName' => $result['userName'],
@@ -94,3 +95,5 @@ class DbOperator
 
 
 // METHODS - TRANSACTION OPERATIONS
+
+}

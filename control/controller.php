@@ -40,26 +40,36 @@ class Controller {
     
     public function login($f3) {
         // If user is already logged in, redirect
-        if (checkLogin($f3)) $f3->reroute('home');
-        
+        if ($this->checkLogin($f3)) $f3->reroute('/');
+
         // If POST data indicates login attempt:
-        if (isset($_POST['action'] && $_POST['action'] == "login")) {
+        if (isset($_POST['action']) && $_POST['action'] == "Log In") {
+            $operator = new DbOperator();
+            
             $email = $_POST['email'];
             $password = sha1($_POST['password']);
-            $result = $operator->userLogin($email, $password);
+            $result = $operator->checkCredentials($email, $password);
             
             if ($result) {
-                $username = $result['userName'];
+                $userName = $result['userName'];
                 $id = $result['id'];
                 $email = $result['password'];
-                $newUser = new User($username, $id, $email);
+                $newUser = new User($userName, $id, $email);
                 
                 $_SESSION['userStatus'] = true;
                 $_SESSION['user'] = $newUser;
                 
-                $f3->reroute('home');
+                $f3->reroute('/');
+            } else {
+                echo "NOPE!";
             }
         }
+    }
+    
+    
+    public function logout($f3) {
+        $f3->set('userStatus', false);
+        session_destroy();
     }
 
 

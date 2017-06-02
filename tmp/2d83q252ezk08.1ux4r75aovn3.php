@@ -7,14 +7,14 @@
         <div class="row text-center">
             <h1>User Login</h1>
         </div>        
-        <form action="login" method="post">
+        <form action="./login" method="post">
             <div class="container col-md-9 col-md-offset-3">
                 <div class="row">
                     <div class="form-group col-md-9">
-                      <span class="label label-default center-block big-lbl" for="username">Username</span>
+                      <span class="label label-default center-block big-lbl" for="email">Email Address</span>
                     </div>
                     <div class="form-group col-md-9">
-                      <input class="form-control" type="text" name="username" required>
+                      <input class="form-control" type="text" name="email" id="email" required>
                     </div>                
                 </div>
                 <div class="row">
@@ -22,11 +22,11 @@
                       <span class="label label-default center-block big-lbl text-center" for="password">Password</span>
                     </div>
                     <div class="form-group col-md-9">
-                        <input class="form-control" type="text" name="password" required>
+                        <input class="form-control" type="text" name="password" id="password" required>
                     </div>
                 </div>
                 <div class="row col-md-offset-4">
-                    <input class="img-rounded" type="submit" value="Log In">
+                    <input class="img-rounded" type="submit" name="action" value="Log In">
                 </div>
            
             </div>

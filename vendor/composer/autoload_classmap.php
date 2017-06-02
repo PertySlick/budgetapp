@@ -45,6 +45,7 @@ return array(
     'Test' => $vendorDir . '/bcosca/fatfree-core/test.php',
     'Transaction' => $baseDir . '/classes/transaction.php',
     'UTF' => $vendorDir . '/bcosca/fatfree-core/utf.php',
+    'User' => $baseDir . '/classes/user.php',
     'View' => $vendorDir . '/bcosca/fatfree-core/base.php',
     'Web' => $vendorDir . '/bcosca/fatfree-core/web.php',
     'Web\\Geo' => $vendorDir . '/bcosca/fatfree-core/web/geo.php',

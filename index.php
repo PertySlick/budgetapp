@@ -33,16 +33,21 @@
     
     
     // Begin Route Definitions
-    
+
     
     $f3->route('GET /', function($f3) use ($controller) {
       $controller->home($f3);
       echo \Template::instance()->render('view/home.html');
     });
     
-    $f3->route('GET /login', function($f3) use ($controller) {
-      $controller->home($f3);
+    $f3->route('GET|POST /login', function($f3) use ($controller) {
+      $controller->login($f3);
       echo \Template::instance()->render('view/login.html');
+    });
+    
+    $f3->route('GET /logout', function($f3) use ($controller) {
+        $controller->logout($f3);
+        $f3->reroute('/');
     });
     
     $f3->route('GET /addexpense', function($f3) use ($controller) {

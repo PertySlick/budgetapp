@@ -45,12 +45,13 @@
       </div>
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">
-          <?php if ($user): ?>
+          <?php if ($userStatus): ?>
             
               <li class="active"><a href="#" title="My Budget Summary">Summary</a></li>
               <li><a href="#" title="Manage Your Income">My Income</a></li>
               <li><a href="#" title="Manage Your Expenses">My Expenses</a></li>
               <li><a href="#" title="Manage Your Budget">My Budget</a></li>
+              <li><a href="logout" title="Log Out">Log Out</a></li>
             
             <?php else: ?>
               <li class="active"><a href="" title="Home">Home</a></li>
