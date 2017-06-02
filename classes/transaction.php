@@ -1,0 +1,135 @@
+<?php
+
+/*
+ * File Name: transaction.php
+ * Author: Timothy Roush
+ * Date Created: 6/02/17
+ * Assignment: Final Budget App
+ * Description: Parent Class: Transaction
+ */
+
+/**
+ * Provides a base class for other transaction chil classes to inherit from.
+ * Supplies the basic transaction details such as date posted, amount, as well
+ * as a few getters and setters.  This is not intended to be instanciated as
+ * it's own object.
+ *
+ * @author Timothy Roush
+ * @copyright 2017
+ * @version 1.0
+ * @see BudgetItem
+ * @see IncomeItem
+ * @see ExpenseItem
+ */
+abstract class Transaction {
+
+
+// FIELDS
+
+
+    protected $amount;                      // Amount value for transaction
+    protected $category;                    // Category of this transaction
+    protected $dateApplied;                 // Date transaction applies
+    protected $datePosted;                  // Date transaction was created
+
+
+// CONSTRUCTOR
+
+
+    /**
+     * Constructs an instance of this object with the base required information.
+     * @param $amount float dollar amount to store in transaction
+     * @param $category string name of transaction category
+     * @param $datePosted string date transaction was created
+     * @param $dateApplied string date transaction actually applies
+     */
+    protected function __construct($amount, $category, $datePosted, $dateApplied) {
+        $this->setAmount($amount);
+        $this->setCategory($category);
+        $this->setDatePosted($datePosted);
+    }
+
+
+// METHODS - GETTERS
+
+
+    /**
+     * Returns the dollar amount stored for this transaction
+     */
+    protected function getAmount() {
+        return $this->amount;
+    }
+    
+    
+    /**
+     * Returns the category stored for this transaction
+     */
+    protected function getCategory() {
+        return $this->category;
+    }
+    
+    
+    /**
+     * Returns the date this transaction actually applies in a display format
+     */
+    protected function getDateApplied() {
+        return date("F jS, Y", $this->dateApplied);
+    }
+    
+    
+    /**
+     * Returns the date this transaction was created in a display format
+     */
+    protected function getDatePosted() {
+        return date("F jS, Y", $this->datePosted);
+    }
+    
+    
+    /**
+     * Returns the month this transaction actually applies in a display format
+     */
+    protected function getApplyMonth() {
+        return date("m", $this->dateApplied);
+    }
+
+
+// METHODS - SETTERS
+
+
+    /**
+     * Abstract class is specific to each child class.  Must set the dollar
+     * amount of this transaction.
+     */
+    abstract protected function setAmount($value) {}
+
+
+    /**
+     * Sets the category of this transaction.  Value is first compared against
+     * an array of possible values.  If the value is not found in the array, it
+     * is then set as 'other'.  Otherwise it is entered as supplied.
+     */
+    protected function setCategory($value) {
+        $categories = array('Gas', 'Groceries', 'Auto Maintenance',
+                            'Home Maintenance', 'Clothing', 'Medical',
+                            'Clothing', 'Recreation', 'Other');
+        
+        if (!in_array($value, $categories)) $value = 'Other';
+        $this->category = $value;
+    }
+    
+    
+    /**
+     * Sets the date that this transaction actually applies.  A string value
+     * must be supplied as it is then converted to a time value and stored.
+     */
+    protected function setDateApplied($value) {
+        $this->dateApplied = strtotime($value);
+    }
+    
+    /**
+     * Sets the date that this transaction was created.  A string value must be
+     * supplied as it is then converted to a time value and stored.
+     */
+    protected function setDatePosted($value) {
+        $this->datePosted = strtotime($value);
+    }

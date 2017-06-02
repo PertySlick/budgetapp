@@ -40,6 +40,7 @@ return array(
     'Session' => $vendorDir . '/bcosca/fatfree-core/session.php',
     'Template' => $vendorDir . '/bcosca/fatfree-core/template.php',
     'Test' => $vendorDir . '/bcosca/fatfree-core/test.php',
+    'Transaction' => $baseDir . '/classes/transaction.php',
     'UTF' => $vendorDir . '/bcosca/fatfree-core/utf.php',
     'View' => $vendorDir . '/bcosca/fatfree-core/base.php',
     'Web' => $vendorDir . '/bcosca/fatfree-core/web.php',
