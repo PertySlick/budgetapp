@@ -55,6 +55,7 @@ abstract class Transaction {
 
     /**
      * Returns the dollar amount stored for this transaction
+     * @return int dollar amount for transaction
      */
     protected function getAmount() {
         return $this->amount;
@@ -63,6 +64,7 @@ abstract class Transaction {
     
     /**
      * Returns the category stored for this transaction
+     * @return String category of transaction
      */
     protected function getCategory() {
         return $this->category;
@@ -71,6 +73,7 @@ abstract class Transaction {
     
     /**
      * Returns the date this transaction actually applies in a display format
+     * @return String date transaction applies
      */
     protected function getDateApplied() {
         return date("F jS, Y", $this->dateApplied);
@@ -79,6 +82,7 @@ abstract class Transaction {
     
     /**
      * Returns the date this transaction was created in a display format
+     * @return String date transaction was posted
      */
     protected function getDatePosted() {
         return date("F jS, Y", $this->datePosted);
@@ -87,6 +91,7 @@ abstract class Transaction {
     
     /**
      * Returns the month this transaction actually applies in a display format
+     * @return String month this transaction applies
      */
     protected function getApplyMonth() {
         return date("m", $this->dateApplied);
