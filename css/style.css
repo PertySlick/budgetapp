@@ -10,6 +10,10 @@ body {
   padding-top: 50px;
 }
 
+.help-block {
+  font-size: .8em;
+}
+
 .login-cont{
   background-color:white;
 }

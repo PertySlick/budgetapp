@@ -35,36 +35,41 @@
     // Begin Route Definitions
 
     
+    // Default route - main home page
     $f3->route('GET /', function($f3) use ($controller) {
       $controller->home($f3);
       echo \Template::instance()->render('view/home.html');
     });
     
+    // User log in and authentication
     $f3->route('GET|POST /login', function($f3) use ($controller) {
       $controller->login($f3);
       echo \Template::instance()->render('view/login.html');
     });
     
+    // User log out and de-authentication
     $f3->route('GET /logout', function($f3) use ($controller) {
         $controller->logout($f3);
         $f3->reroute('/');
     });
     
+    // Allow user to create a new expense item
     $f3->route('GET /addexpense', function($f3) use ($controller) {
       $controller->home($f3);
       echo \Template::instance()->render('view/addexpense.html');
     });
     
+    // Allow user to create a new income item
     $f3->route('GET /addincome', function($f3) use ($controller) {
       $controller->home($f3);
       echo \Template::instance()->render('view/addincome.html');
     });
     
-    $f3->route('GET /signup', function($f3) use ($controller) {
+    // Allow visitor to register as a new user
+    $f3->route('GET|POST /signup', function($f3) use ($controller) {
       $controller->register($f3);
       echo \Template::instance()->render('view/signup.html');
     });
-        
         
       
     // Execute Route

@@ -1,0 +1,28 @@
+[02-Jun-2017 21:30:21 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:30:23 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:30:27 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:30:39 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:30:52 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:31:25 America/Chicago] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home/troush/public_html/328/budgetapp/model/ajax.php on line 28
+[02-Jun-2017 21:31:58 America/Chicago] PHP Warning:  require_once(../../../secure/credentials_budgetapp.inc.php): failed to open stream: No such file or directory in /home/troush/public_html/328/budgetapp/model/ajax.php on line 33
+[02-Jun-2017 21:31:58 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '../../../secure/credentials_budgetapp.inc.php' (include_path='.:/opt/php70/lib/php') in /home/troush/public_html/328/budgetapp/model/ajax.php on line 33
+[02-Jun-2017 21:32:40 America/Chicago] PHP Warning:  require_once(../../secure/credentials_budgetapp.inc.php): failed to open stream: No such file or directory in /home/troush/public_html/328/budgetapp/model/ajax.php on line 33
+[02-Jun-2017 21:32:40 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '../../secure/credentials_budgetapp.inc.php' (include_path='.:/opt/php70/lib/php') in /home/troush/public_html/328/budgetapp/model/ajax.php on line 33
+[02-Jun-2017 21:36:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'DbOperator' not found in /home/troush/public_html/328/budgetapp/model/ajax.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/troush/public_html/328/budgetapp/model/ajax.php on line 12
+[02-Jun-2017 21:38:08 America/Chicago] PHP Warning:  require_once(../../../secure/credentials_budgetapp.inc.php): failed to open stream: No such file or directory in /home/troush/public_html/328/budgetapp/model/dboperator.php on line 49
+[02-Jun-2017 21:38:08 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '../../../secure/credentials_budgetapp.inc.php' (include_path='.:/opt/php70/lib/php') in /home/troush/public_html/328/budgetapp/model/dboperator.php on line 49
+[02-Jun-2017 21:53:52 America/Chicago] PHP Warning:  require_once(../../../secure/credentials_budgetapp.inc.php): failed to open stream: No such file or directory in /home/troush/public_html/328/budgetapp/model/ajax.php on line 26
+[02-Jun-2017 21:53:52 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '../../../secure/credentials_budgetapp.inc.php' (include_path='.:/opt/php70/lib/php') in /home/troush/public_html/328/budgetapp/model/ajax.php on line 26
+[02-Jun-2017 21:54:22 America/Chicago] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/troush/public_html/328/budgetapp/model/ajax.php:44
+Stack trace:
+#0 /home/troush/public_html/328/budgetapp/model/ajax.php(16): emailExists()
+#1 {main}
+  thrown in /home/troush/public_html/328/budgetapp/model/ajax.php on line 44
+[02-Jun-2017 21:56:24 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/troush/public_html/328/budgetapp/model/ajax.php:44
+Stack trace:
+#0 /home/troush/public_html/328/budgetapp/model/ajax.php(16): emailExists()
+#1 {main}
+  thrown in /home/troush/public_html/328/budgetapp/model/ajax.php on line 44

@@ -90,6 +90,17 @@ class DbOperator
         }
         return null;
     }
+    
+    
+    public function emailExists($email) {
+        $stmt = $this->conn->prepare('SELECT COUNT(*) as count FROM users WHERE email=:email');
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($results['count'] > 0) return true;
+        else return false;
+    }
 
 
 // METHODS - TRANSACTION OPERATIONS

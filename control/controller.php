@@ -18,8 +18,10 @@
  * @version 1.0
  * @see DbOperator.php
  * @see index.php
- * @see CLASS
- * @see CLASS
+ * @see User.php
+ * @see BudgetItem.php
+ * @see IncomeItem.php
+ * @see ExpenseItem.php
  */
 class Controller {
 
@@ -28,17 +30,45 @@ class Controller {
 
 
     /**
-     * TODO
+     * Handles all logic for the main home page.
+     * @param $f3 Fat Free object
      */
     public function home($f3) {
+        // Set environment tokens
         $f3->mSet(array(
             'title' => 'BudgetApp',
             'description' => 'Welcome To BudgetApp'
         ));
     }
+
+
+    /**
+     * Handles all logic for new user registration
+     * @param $f3 Fat Free object
+     */
+    public function register($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp - New User',
+            'description' => 'Join to start budgeting today!'
+        ));
+    }
     
     
+    /**
+     * Handles all logic for user authentication and "logging in" to the site.
+     * Email and password values entered by user are checked against the users
+     * table in the database.  If a matching email is found with a matching
+     * password, the user is tagged as "authenticated" and a User object with
+     * their data is stored in the SESSION.
+     */
     public function login($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp - User Login',
+            'description' => 'Login to get budgeting!'
+        ));
+        
         // If user is already logged in, redirect
         if ($this->checkLogin($f3)) $f3->reroute('/');
 
@@ -70,14 +100,19 @@ class Controller {
             }
         }
         
+        // If authentication failed, make email field "sticky"
         if (isset($_POST['email'])) {
             $f3->set('email', $_POST['email']);
         }
     }
     
     
+    /**
+     * Handles all logic for user log out.  Destroys SESSION and all values
+     * stored within, thus de-authenticating the user.
+     * @param $f3 Fat Free object
+     */
     public function logout($f3) {
-        $f3->set('userStatus', false);
         session_destroy();
     }
 
@@ -85,7 +120,7 @@ class Controller {
     /**
      * Update the fat-free object to reflect the visitor's current member
      * status.  If the user is logged in, set a toggle and store Blogger data
-     * @param $f3 fat-free instance to operate with
+     * @param $f3 Fat Free object
      */
     public function checkLogin($f3) {
         if ($_SESSION['userStatus'] === true) {
