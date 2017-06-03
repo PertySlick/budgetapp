@@ -74,6 +74,8 @@ function validateVerify() {
   if (password.length > 0 && verify.length > 0) {
     if (password != verify) {
       postError($('input[type=password]'), 'Password and Verify values must match');
+    } else {
+      clearError($('input[type=password]'));
     }
   }
 }

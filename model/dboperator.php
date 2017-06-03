@@ -92,6 +92,12 @@ class DbOperator
     }
     
     
+    /**
+     * Determines if the supplied email address exists in the database.
+     * Intended to be used as a registration form check to make sure email
+     * entered is unique.
+     * @param $email String email address to search database for
+     */
     public function emailExists($email) {
         $stmt = $this->_conn->prepare('SELECT COUNT(*) as count FROM users WHERE email=:email');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -100,6 +106,25 @@ class DbOperator
         
         if ($results['count'] > 0) return true;
         else return false;
+    }
+    
+    
+    public function addUser($userName, $email, $password) {
+        echo $userName . " " . $password . " " . $email;
+        $stmt = $this->_conn->prepare('INSERT INTO users ' .
+                                      '(userName, email, password) ' .
+                                      'VALUES (:userName, :email, :password) ');
+        $stmt->bindParam(':userName', $userName, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', sha1($password), PDO::PARAM_STR);
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding " . $userName . " to the database... " . $e);
+        }
+        
+        return $this->_conn->lastInsertId();
     }
 
 

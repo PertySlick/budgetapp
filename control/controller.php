@@ -62,6 +62,20 @@ class Controller {
     public function registerSubmit($f3) {
         $this->register($f3);
         $this->validateRegistration($f3);
+        
+        // If input passed validation add user and reroute
+        if (!$f3->get('isErrors')) {
+            $operator = new DbOperator();
+            
+            $id = $operator->addUser($f3->get('userName'),
+                                     $f3->get('email'),
+                                     $f3->get('password'));
+            
+            $newUser = new User($f3->get('userName'), $id, $f3->get('email'));
+            $_SESSION['userStatus'] = true;
+            $_SESSION['user'] = $newUser;
+            $f3->reroute('login');
+        }
     }
     
     
@@ -174,14 +188,9 @@ class Controller {
             $f3->set( 'verifyError', 'Password and Verify values must match');
         }
         
+        // Make sure all required fields have values
         $this->checkRequired($f3, $fields);
-        
-        //$userName = $this->sanitize($_POST['userName']);
-        //$password = $this->sanitize($_POST['password']);
-        //$verify = $this->sanitize($_POST['verify']);
-        //$email = $this->sanitize($_POST['email']);
-        
-        
+
     }
 
 
@@ -212,7 +221,7 @@ class Controller {
     // Make sure email format is valid
     private function validEmail($email) {
         $pattern = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
-        if (preg_match($pattern, $email) == 0) return false;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) return false;
         else return true;
     }
     
