@@ -109,8 +109,10 @@ class DbOperator
     }
     
     
+    /**
+     * Creates a new user record in the database with the supplied information.
+     * 
     public function addUser($userName, $email, $password) {
-        echo $userName . " " . $password . " " . $email;
         $stmt = $this->_conn->prepare('INSERT INTO users ' .
                                       '(userName, email, password) ' .
                                       'VALUES (:userName, :email, :password) ');
