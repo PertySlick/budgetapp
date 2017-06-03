@@ -7,95 +7,94 @@
  */
 
 
-var isError = false;
+var isError = false;                        // Global error toggle
 
-$(document).ready(function() {
-  // AJAX: Check if new email is already registered
+
+$(document).ready(function() {              // Auto event handlers
   $('#email').blur(validateNewEmail);
   $('input[type=password]').blur(validateVerify);
-  //$('#submit').click(validateRequired);
+  $('#registration').on('submit', validateRegistration);
+
 });
 
 
-// Validate all fields before submitting
-function validateRegistration() {
-  clearErrors();
-  validateVerify();
-  if (validateEmail()) {
-    validateNewEmail();
-  }
-  validateRequired();
+// Full Validation for all fields before submitting
+function validateRegistration(event) {
+  clearErrors();                            // Remove previous errors
+  validateVerify();                         // Ensure password and verify match
+  if (validateEmail()) validateNewEmail();  // If valid email, make sure unique
+  validateRequired();                       // Ensure required fields filled
 
-  if (!isError) {
-    return true;
-  } else {
-    return false;
-  }
-  
+  if (isError) event.preventDefault();      // If errors, prevent submit
 }
+
 
 // Validates that new email is acceptable and not already in use
 function validateNewEmail() {
   var email = $('#email').val();
+  
+  // AJAX call to check database for email
   $.post('model/ajax.php', {action: 'emailExists', email: email }, function(data) {
     if (data == 'true') {
-      $('#email').parent().toggleClass("has-error", true);
-      $('#email').next().text('Email has already been registered');
-      isError = true;
+      postError( $('#email'), 'Email has already been registered' );
     } else {
-      $('#email').parent().toggleClass("has-error", false);
-      $('#email').next().text('');
+      clearError( $('#email') );
       isError = false;
     }
   });
 }
 
 
+// Make sure all required fields have values
 function validateRequired() {
-  var required = ["userName", "password", "verify", "email"];
-  
-  for (field in required) {
-    var input = $("#" + required[field]);
-
-    if (input.val() == null || input.val() == "") {
-      input.parent().toggleClass("has-error", true);
-      input.next().text('This is a required field');
-      isError = true;
+  $('input').each( function() {
+    if ( $(this).val() == null || $(this).val() == "" ) {
+      postError( $(this), 'This is a required field' );
     }
-  }
+  })
 }
 
-
+// Validate email format against a regex
 function validateEmail() {
   var email = $('#email');
   var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   if (!regex.test(email.val())) {
-    email.parent().toggleClass("has-error", true);
-    email.next().text('This is not a valid email format');
-    isError = true;
+    postError(email, 'This is not a valid email format');
     return false;
   }
   return true;
 }
 
+// Make sure password and verify values match
 function validateVerify() {
   var password = $('#password').val();
   var verify = $('#verify').val();
 
   if (password.length > 0 && verify.length > 0) {
     if (password != verify) {
-      $('input[type=password]').parent().toggleClass("has-error", true);
-      $('input[type=password]').next().text('Password and Verify values must match');
-      isError = true;
+      postError($('input[type=password]'), 'Password and Verify values must match');
     }
   }
 }
 
+// Post error status to form groups
+function postError(field, error) {
+  field.parent().toggleClass("has-error", true);
+  field.next().text(error);
+  isError = true;
+}
+
+// Clear a single error
+function clearError(field) {
+  field.parent().toggleClass("has-error", false);
+  field.next().text('');
+}
+
+// Clear all input field errors for "clean slate"
 function clearErrors() {
   $('input[type=text],input[type=password]').each( function() {
-    $(this).parent().toggleClass("has-error", false);
-    $(this).next().text('');
+    clearError( $(this) );
     isError = false;
   });
 }

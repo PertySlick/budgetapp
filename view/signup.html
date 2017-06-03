@@ -5,7 +5,7 @@
          <h1>Create Account</h1>
      </div>
      <div class="container col-md-8">
-         <form action="./signup" method="POST" id="registration" onsubmit="return validateRegistration()">
+         <form action="./signup" method="POST" id="registration" > <!--onsubmit="return validateRegistration()">-->
              <div class="form-group">
                  <label class="control-label lbl" for="userName">Username:</label>
                  <input class="form-control" type="text" name="userName" id="userName">
