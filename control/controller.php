@@ -56,6 +56,16 @@ class Controller {
     
     
     /**
+     * Registration logic after an attempted form submittal
+     * @param $f3 Fat Free object
+     */
+    public function registerSubmit($f3) {
+        $this->register($f3);
+        $this->validateRegistration($f3);
+    }
+    
+    
+    /**
      * Handles all logic for user authentication and "logging in" to the site.
      * Email and password values entered by user are checked against the users
      * table in the database.  If a matching email is found with a matching
@@ -130,5 +140,37 @@ class Controller {
             $f3->set('userStatus', false);
             return false;
         }
+    }
+
+
+// METHODS - SECONDARY
+
+
+    private function validateRegistration($f3) {
+        $fields = array("userName", "password", "verify", "email");
+        
+        foreach ($fields as $field) {
+            ${$field . "Error"} = "";
+            $$field = $this->sanitize($_POST[$field]);
+            $f3->set($field, $$field);
+        }
+
+        //$userName = $this->sanitize($_POST['userName']);
+        //$password = $this->sanitize($_POST['password']);
+        //$verify = $this->sanitize($_POST['verify']);
+        //$email = $this->sanitize($_POST['email']);
+        
+        
+    }
+
+
+// METHODS - SUB-ROUTINES
+
+
+    private function sanitize($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 }

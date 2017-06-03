@@ -8,22 +8,22 @@
          <form action="./signup" method="POST" id="registration" > <!--onsubmit="return validateRegistration()">-->
              <div class="form-group">
                  <label class="control-label lbl" for="userName">Username:</label>
-                 <input class="form-control" type="text" name="userName" id="userName">
+                 <input class="form-control" type="text" name="userName" id="userName" value="<?= $userName ?>" />
                  <div class="help-block" id="userNameError"></div>
              </div>
              <div class="form-group">
                  <label class="control-label lbl" for="password">Password</label><br/>
-                 <input class="form-control" type="password" name="password" id="password">
+                 <input class="form-control" type="password" name="password" id="password" />
                  <div class="help-block" id="passwordError"></div>
              </div>
              <div class="form-group">
                  <label class="control-label lbl" for="verify">Verify</label><br/>
-                 <input class="form-control" type="password" name="verify" id="verify">
+                 <input class="form-control" type="password" name="verify" id="verify" />
                  <div class="help-block" id="verifyError"></div>
              </div>
              <div class="form-group">
                  <label class="control-label lbl" for="email">Email</label><br/>
-                 <input class="form-control" type="text" name="email" id="email">
+                 <input class="form-control" type="text" name="email" id="email" value="<?= $email ?>" />
                  <div class="help-block" id="emailError"></div>
              </div>
              <div class="row col-md-9 col-md-offset-3">

@@ -66,8 +66,14 @@
     });
     
     // Allow visitor to register as a new user
-    $f3->route('GET|POST /signup', function($f3) use ($controller) {
+    $f3->route('GET /signup', function($f3) use ($controller) {
       $controller->register($f3);
+      echo \Template::instance()->render('view/signup.html');
+    });
+    
+    // Registration form after a submit attempt
+    $f3->route('POST /signup', function($f3) use ($controller) {
+      $controller->registerSubmit($f3);
       echo \Template::instance()->render('view/signup.html');
     });
         

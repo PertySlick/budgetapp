@@ -13,7 +13,7 @@ var isError = false;                        // Global error toggle
 $(document).ready(function() {              // Auto event handlers
   $('#email').blur(validateNewEmail);
   $('input[type=password]').blur(validateVerify);
-  $('#registration').on('submit', validateRegistration);
+  //$('#registration').on('submit', validateRegistration);
 
 });
 
