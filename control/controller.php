@@ -52,9 +52,6 @@ class Controller {
             'title' => 'BudgetApp - New User',
             'description' => 'Join to start budgeting today!'
         ));
-                echo '<pre>';
-        print_r($f3);
-        echo '</pre>';
     }
     
     
