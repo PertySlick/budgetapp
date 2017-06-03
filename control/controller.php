@@ -149,12 +149,33 @@ class Controller {
     private function validateRegistration($f3) {
         $fields = array("userName", "password", "verify", "email");
         
+        // Build initial data and error tokens while sanitizing values
         foreach ($fields as $field) {
             ${$field . "Error"} = "";
             $$field = $this->sanitize($_POST[$field]);
             $f3->set($field, $$field);
         }
 
+        // Email field validation
+        if (!$this->validEmail($email)) {
+            $f3->set( 'isErrors', true );
+            $f3->set( 'emailError', 'This is not a valid email format');
+        } else {
+            if (!$this->uniqueEmail($email)) {
+                $f3->set( 'isErrors', true );
+                $f3->set( 'emailError', 'Email has already been registered');
+            }
+        }
+        
+        // Make sure password and verify are equal
+        if (!$this->fieldsMatch($password, $verify)) {
+            $f3->set( 'isErrors', true );
+            $f3->set( 'passwordError', 'Password and Verify values must match');
+            $f3->set( 'verifyError', 'Password and Verify values must match');
+        }
+        
+        $this->checkRequired($f3, $fields);
+        
         //$userName = $this->sanitize($_POST['userName']);
         //$password = $this->sanitize($_POST['password']);
         //$verify = $this->sanitize($_POST['verify']);
@@ -164,13 +185,49 @@ class Controller {
     }
 
 
-// METHODS - SUB-ROUTINES
+// METHODS - SUB-ROUTINES (SERVER-SIDE VALIDATION)
 
 
+    // Clean input of all dangerous characters
     private function sanitize($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+    
+    
+    // Make sure all required fields have values.
+    // $fields is an array of strings (field names)
+    private function checkRequired($f3, $fields) {
+        foreach ($fields as $field) {
+            if (empty($f3->get($field))) {
+                $f3->set( 'isErrors', true );
+                $f3->set( $field . "Error", "This is a required field");
+            }
+        }
+    }
+    
+    
+    // Make sure email format is valid
+    private function validEmail($email) {
+        $pattern = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
+        if (preg_match($pattern, $email) == 0) return false;
+        else return true;
+    }
+    
+    
+    // Make sure email is not already registered
+    private function uniqueEmail($email) {
+        $operator = new DbOperator();
+
+        if (($operator->emailExists($email))) return false;
+        else return true;
+    }
+    
+    
+    // Make sure two non-empty values match each other (password/verify)
+    private function fieldsMatch($field1, $field2) {
+        return $field1 == $field2;
     }
 }

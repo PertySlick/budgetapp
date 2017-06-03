@@ -93,7 +93,7 @@ class DbOperator
     
     
     public function emailExists($email) {
-        $stmt = $this->conn->prepare('SELECT COUNT(*) as count FROM users WHERE email=:email');
+        $stmt = $this->_conn->prepare('SELECT COUNT(*) as count FROM users WHERE email=:email');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
