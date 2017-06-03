@@ -44,25 +44,34 @@ class Controller {
 
         // If POST data indicates login attempt:
         if (isset($_POST['action']) && $_POST['action'] == "Log In") {
+            // Instantiate database operator
             $operator = new DbOperator();
             
+            // Verify entered credentials
             $email = $_POST['email'];
             $password = sha1($_POST['password']);
             $result = $operator->checkCredentials($email, $password);
             
+            // If credentials are valid
             if ($result) {
                 $userName = $result['userName'];
                 $id = $result['id'];
                 $email = $result['password'];
-                $newUser = new User($userName, $id, $email);
                 
-                $_SESSION['userStatus'] = true;
+                // Create a user object and store in SESSION
+                $newUser = new User($userName, $id, $email);
                 $_SESSION['user'] = $newUser;
                 
+                // Set user status toggle in SESSION
+                $_SESSION['userStatus'] = true;
+                
+                // Reroute user after successfull login
                 $f3->reroute('/');
-            } else {
-                echo "NOPE!";
             }
+        }
+        
+        if (isset($_POST['email'])) {
+            $f3->set('email', $_POST['email']);
         }
     }
     

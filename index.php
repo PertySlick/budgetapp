@@ -61,7 +61,7 @@
     });
     
     $f3->route('GET /signup', function($f3) use ($controller) {
-      $controller->home($f3);
+      $controller->register($f3);
       echo \Template::instance()->render('view/signup.html');
     });
         
