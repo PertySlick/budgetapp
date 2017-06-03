@@ -40,6 +40,71 @@ class Controller {
             'description' => 'Welcome To BudgetApp'
         ));
     }
+    
+    
+    /**
+     * Handles all logic for the about us page.
+     * @param $f3 Fat Free object
+     */
+    public function about($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp: About Us',
+            'description' => 'Learn More About BudgetApp'
+        ));
+    }
+    
+    
+    /**
+     * Handles all logic for the user main summary page.
+     * @param $f3 Fat Free object
+     */
+    public function userHome($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp: Your Summary',
+            'description' => 'A Summary Of Your Overall Budget'
+        ));
+    }
+    
+    
+    /**
+     * Handles all logic for the user income summary page.
+     * @param $f3 Fat Free object
+     */
+    public function income($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp: Your Income',
+            'description' => 'A Summary Of Your Income'
+        ));
+    }
+    
+    
+    /**
+     * Handles all logic for the user expense summary page.
+     * @param $f3 Fat Free object
+     */
+    public function expense($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp: Your Expense',
+            'description' => 'A Summary Of Your Expense'
+        ));
+    }
+    
+    
+    /**
+     * Handles all logic for the user budget summary page.
+     * @param $f3 Fat Free object
+     */
+    public function budget($f3) {
+        // Set environment tokens
+        $f3->mSet(array(
+            'title' => 'BudgetApp: Your Budget',
+            'description' => 'A Summary Of Your Budget'
+        ));
+    }
 
 
     /**
@@ -120,7 +185,7 @@ class Controller {
                 $_SESSION['userStatus'] = true;
                 
                 // Reroute user after successfull login
-                $f3->reroute('/');
+                $f3->reroute('userHome');
             }
         }
         

@@ -41,6 +41,30 @@
       echo \Template::instance()->render('view/home.html');
     });
     
+    // Logged in user's main summary page
+    $f3->route('GET /userHome', function($f3) use ($controller) {
+      $controller->userHome($f3);
+      echo \Template::instance()->render('view/home.html');
+    });
+    
+    // Logged in user's income summary
+    $f3->route('GET /income', function($f3) use ($controller) {
+      $controller->income($f3);
+      echo \Template::instance()->render('view/home.html');
+    });
+    
+    // Logged in user's expense summary
+    $f3->route('GET /expense', function($f3) use ($controller) {
+      $controller->expense($f3);
+      echo \Template::instance()->render('view/home.html');
+    });
+    
+    // Logged in user's budget summary
+    $f3->route('GET /budget', function($f3) use ($controller) {
+      $controller->budget($f3);
+      echo \Template::instance()->render('view/home.html');
+    });
+    
     // User log in and authentication
     $f3->route('GET|POST /login', function($f3) use ($controller) {
       $controller->login($f3);
@@ -75,6 +99,12 @@
     $f3->route('POST /signup', function($f3) use ($controller) {
       $controller->registerSubmit($f3);
       echo \Template::instance()->render('view/signup.html');
+    });
+    
+    // Site visitors want to learn more about us
+    $f3->route('GET /about', function($f3) use ($controller) {
+      $controller->about($f3);
+      echo \Template::instance()->render('view/home.html');
     });
         
       
