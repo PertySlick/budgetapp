@@ -7,7 +7,7 @@
         <div class="container col-md-8">
             <form action="addexpense" method="POST">
                 <div class="form-group">
-                    <label class="lbl" for="firstname">Description</label>
+                    <label class="lbl" for="description">Description</label>
                     <input class="form-control" type="text" name="description">
                 </div>
                  <div class="form-group">

@@ -27,7 +27,7 @@ class Controller {
 
 
 // METHODS - MAIN ROUTE OPERATIONS
-
+    
 
     /**
      * Handles all logic for the main home page.
@@ -79,6 +79,32 @@ class Controller {
             'description' => 'A Summary Of Your Income'
         ));
     }
+    /**
+     * Handles all logic for the user adding income.
+     * @param $f3 Fat Free object
+     */
+    public function addIncome($f3) {
+     $desc = $_POST['description'];
+     $type = $_POST['type'];
+     $amount = $_POST['amount'];
+     $frequency = $_POST['amount'];
+     $date = $_POST['date'];
+     $user = $_SESSION['user'];
+     $userID = $user->getID();
+     
+     var_dump($desc.$type.$amount.$frequency.$date.$userid);
+     echo("userId: ".$userID);
+     var_dump($_SESSION);
+     
+     $operator = new DbOperator();
+     $operator->addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date);
+     
+     $printStr = $operator->getAllIncomeByUserID($userID);
+     
+     var_dump($printStr);
+  
+    }
+
     
     
     /**

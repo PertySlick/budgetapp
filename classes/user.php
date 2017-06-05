@@ -20,7 +20,10 @@ class User {
 
 
 // CONSTRUCTOR
-
+    
+    protected $userName;
+    protected $id;
+    protected $email;
 
     /**
      * Constructs an instance of this object with the base required information.

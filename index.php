@@ -85,8 +85,14 @@
     
     // Allow user to create a new income item
     $f3->route('GET /addincome', function($f3) use ($controller) {
-      $controller->home($f3);
+      $controller->addIncome($f3);
       echo \Template::instance()->render('view/addincome.html');
+    });
+    
+    //Posting new income item
+    $f3->route('POST /addincome', function($f3) use ($controller) {
+    $controller->addIncome($f3);
+     echo \Template::instance()->render('view/addincome.html');
     });
     
     // Allow visitor to register as a new user

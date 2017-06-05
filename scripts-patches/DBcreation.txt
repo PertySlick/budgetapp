@@ -1,0 +1,34 @@
+CREATE DATABASE budgetapp;
+
+USE budgetapp;
+
+CREATE TABLE user(
+userid int NOT NULL primary key AUTO_INCREMENT,
+firstname varchar(255),
+lastname varchar(255),
+email text,
+username text,
+occupation text,
+createDate date
+);
+
+CREATE TABLE incomeDtl(
+incomeid int NOT NULL primary key AUTO_INCREMENT,
+description varchar(255),
+incometype varchar(255),
+amount double(4,2),
+frequency text,
+user_userID int,
+effectivedate date
+);
+
+CREATE TABLE expenseDtl(
+expenseid int NOT NULL primary key AUTO_INCREMENT,
+description varchar(255),
+amount double(4,2),
+expensetype varchar(255),
+frequency text,
+duedate date,
+user_userID int,
+createdate date
+);

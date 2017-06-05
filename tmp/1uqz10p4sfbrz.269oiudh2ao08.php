@@ -10,8 +10,8 @@
   -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <title>Blogs: <?= $title ?></title>
-  <meta name="description" content="<?= 'BudgetApp: ' . $description ?>" />
+  <title><?= $title ?></title>
+  <meta name="description" content="<?= $description ?>" />
   <meta name="author" content="Timothy Roush" />
   <meta name="author" content="Jeff Pratt" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,22 +41,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="">BudgetApp</a>
+        <a class="navbar-brand" href="<?= $BASE ?>">BudgetApp</a>
       </div>
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">
-          <?php if ($user): ?>
+          <?php if ($userStatus): ?>
             
-              <li class="active"><a href="#" title="My Budget Summary">Summary</a></li>
-              <li><a href="#" title="Manage Your Income">My Income</a></li>
-              <li><a href="#" title="Manage Your Expenses">My Expenses</a></li>
-              <li><a href="#" title="Manage Your Budget">My Budget</a></li>
+              <li class="<?= $PATH=='/userHome'?'active':'' ?>"><a href="userHome" title="My Budget Summary">Summary</a></li>
+              <li class="<?= $PATH=='/income'?'active':'' ?>"><a href="income" title="Manage Your Income">My Income</a></li>
+              <li class="<?= $PATH=='/expense'?'active':'' ?>"><a href="expense" title="Manage Your Expenses">My Expenses</a></li>
+              <li class="<?= $PATH=='/budget'?'active':'' ?>"><a href="budget" title="Manage Your Budget">My Budget</a></li>
+              <li class="<?= $PATH=='/logout'?'active':'' ?>"><a href="logout" title="Log Out">Log Out</a></li>
             
             <?php else: ?>
-              <li class="active"><a href="" title="Home">Home</a></li>
-              <li><a href="#" title="Learn About This Site">About Us</a></li>
-              <li><a href="signup" title="Register With Us">Sign Up!</a></li>
-              <li><a href="login" title="Log In To Your Budget">Log In</a></li>
+              <li class="<?= $PATH=='/'?'active':'' ?>"><a href="<?= $BASE ?>" title="Home">Home</a></li>
+              <li class="<?= $PATH=='/about'?'active':'' ?>"><a href="about" title="Learn About This Site">About Us</a></li>
+              <li class="<?= $PATH=='/signup'?'active':'' ?>"><a href="signup" title="Register With Us">Sign Up!</a></li>
+              <li class="<?= $PATH=='/login'?'active':'' ?>"><a href="login" title="Log In To Your Budget">Log In</a></li>
             
           <?php endif; ?>
           

@@ -132,4 +132,60 @@ class DbOperator
 
 // METHODS - TRANSACTION OPERATIONS
 
+    /**
+     * Creates a new income record for user
+     */
+    public function addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date){
+        $stmt = $this->_conn->prepare('INSERT INTO incomeDtl ' .
+                                      '(description, incometype, amount,frequency,user_userID, effectivedate) ' .
+                                      'VALUES (:desc, :type, :amount, :frequency, :user_userID, :effectivedate) ');
+        $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+        $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
+        $stmt->bindParam(':frequency', $frequency, PDO::PARAM_STR);
+        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
+        $stmt->bindParam(':effectivedate', $date, PDO::PARAM_STR);
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }        
+        return $this->_conn->lastInsertId();
+    }
+    
+    /**
+     * Retrieves all income records for user
+     */
+    public function getAllIncomeByUserID($userID){
+        $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE user_userID = :user_userID');
+        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
+        
+        try {
+            $results = $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resultArray =  [];
+            foreach($results as $row){
+                //assign properties of class to variable
+                $incomeID = $row['incomeid'];
+                $desc = $row['description'];
+                $incomeType = $row['incometype'];
+                $amount = $row['amount'];
+                $userID = $row['user_userID'];
+                $effectiveDate = $row['effectiveDate'];                
+                //create new incomeitem object 
+                $income = new incomeItem ($amount,$incomeType,date('m-d-Y'),$effectiveDate);
+                //add object to array
+                $resultArray.push($income);                
+            }
+            
+            return $resultArray;
+        
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }        
+        return $this->_conn->lastInsertId();
+        
+    }
+
 }

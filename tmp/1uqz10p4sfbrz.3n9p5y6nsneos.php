@@ -1,4 +1,4 @@
-<include href="resources/template_header.inc.html" />   
+<?php echo $this->render('resources/template_header.inc.html',NULL,get_defined_vars(),0); ?>   
    
    <div class="container">
         <div class="container col-md-9 text-left">
@@ -44,4 +44,4 @@
    </div>
    
    
-<include href="resources/template_footer.inc.html">
+<?php echo $this->render('resources/template_footer.inc.html',NULL,get_defined_vars(),0); ?>
