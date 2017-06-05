@@ -78,6 +78,9 @@ class Controller {
             'title' => 'BudgetApp: Your Income',
             'description' => 'A Summary Of Your Income'
         ));
+        
+
+        $user = $_SESSION['user'];
     }
     /**
      * Handles all logic for the user adding income.
@@ -199,9 +202,10 @@ class Controller {
             
             // If credentials are valid
             if ($result) {
+                
                 $userName = $result['userName'];
                 $id = $result['id'];
-                $email = $result['password'];
+                $email = $result['email'];
                 
                 // Create a user object and store in SESSION
                 $newUser = new User($userName, $id, $email);

@@ -31,8 +31,8 @@ class User {
      * @param $id int current user's database record number
      * @param $email String current user's email address
      */
-    public function __contruct($userName, $id, $email) {
-        $this->setuserName($value);
+    public function __construct($userName, $id, $email) {
+        $this->setUserName($userName);
         $this->setID($id);
         $this->setEmail($email);
     }
@@ -88,7 +88,7 @@ class User {
      * @param $value int database record number for this user
      */
     public function setID($value) {
-        if (!is_numeric($value)) die("setID() only accepts a numerical ID value");
+        //if (!is_numeric($value)) die("setID() only accepts a numerical ID value");
         $this->id = $value;
     }
     
