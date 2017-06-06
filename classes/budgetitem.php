@@ -45,4 +45,5 @@ abstract class BudgetItem extends Transaction {
     public function setAmount($value) {
         if ($value < 0) $value = 0;
         $this->amount = floor($value);
-    }   
+    }
+}

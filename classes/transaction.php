@@ -21,7 +21,7 @@
  * @see IncomeItem
  * @see ExpenseItem
  */
-abstract class Transaction {
+class Transaction {
 
 
 // FIELDS
@@ -43,7 +43,7 @@ abstract class Transaction {
      * @param $datePosted string date transaction was created
      * @param $dateApplied string date transaction actually applies
      */
-    protected function __construct($amount, $category, $datePosted, $dateApplied) {
+    public function __construct($amount, $category, $datePosted) {
         $this->setAmount($amount);
         $this->setCategory($category);
         $this->setDatePosted($datePosted);
@@ -105,7 +105,8 @@ abstract class Transaction {
      * Abstract class is specific to each child class.  Must set the dollar
      * amount of this transaction.
      */
-    abstract protected function setAmount($value) {}
+     protected function setAmount($value){
+     }
 
 
     /**
@@ -138,3 +139,4 @@ abstract class Transaction {
     protected function setDatePosted($value) {
         $this->datePosted = strtotime($value);
     }
+}

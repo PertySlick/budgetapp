@@ -15,8 +15,8 @@
                     <input class="form-control" type="text" name="type">
                 </div>
                 <div class="form-group">
-                    <label class="lbl" for="date">Date </label>
-                    <input class="form-control" type="text" name="date">
+                    <label class="lbl" for="date">Due Date</label>
+                    <input class="form-control" type="date" name="date">
                 </div>
                 <div class="form-group">
                     <label class="lbl" for="amount">Amount</label><br/>
@@ -25,13 +25,13 @@
                     <div class="form-group">
                      <label class="lbl" for="frequency">Frequency</label><br/>
                      <select class="form-control" name="frequency">
-                     <option value="Daily">Daily</option>
+                    <!-- <option value="Daily">Daily</option>
                      <option value="Weekly">Weekly</option>
-                     <option value="Bi-Weekly">Bi-Weekly</option>
+                     <option value="Bi-Weekly">Bi-Weekly</option>-->
                      <option value="Monthly">Monthly</option>
-                     <option value="Semi-Annually">Semi Annually</option>
+                     <!--<option value="Semi-Annually">Semi Annually</option>
                      <option value="Quarterly">Quarterly</option>
-                     <option value="Annual">Annual</option>
+                     <option value="Annual">Annual</option>-->
                 </div>
                     <br>
                 <div class="row col-md-9 col-md-offset-3">

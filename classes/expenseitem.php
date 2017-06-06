@@ -72,7 +72,8 @@ abstract class ExpenseItem extends Transaction {
      */
     public function setDescription($value) {
         if ($value == null || $value == "") $value = "Expense Item";
-        
         $this->description = $value;
     }
+}
+
     

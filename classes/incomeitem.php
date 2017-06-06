@@ -75,4 +75,5 @@ abstract class IncomeItem extends Transaction {
         
         $this->description = $value;
     }
+}
     

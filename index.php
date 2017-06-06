@@ -79,7 +79,12 @@
     
     // Allow user to create a new expense item
     $f3->route('GET /addexpense', function($f3) use ($controller) {
-      $controller->home($f3);
+      $controller->addExpense($f3);
+      echo \Template::instance()->render('view/addexpense.html');
+    });
+    
+      $f3->route('POST /addexpense', function($f3) use ($controller) {
+      $controller->addExpense($f3);
       echo \Template::instance()->render('view/addexpense.html');
     });
     

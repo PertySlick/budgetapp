@@ -82,6 +82,7 @@ class Controller {
 
         $user = $_SESSION['user'];
     }
+    
     /**
      * Handles all logic for the user adding income.
      * @param $f3 Fat Free object
@@ -95,17 +96,31 @@ class Controller {
      $user = $_SESSION['user'];
      $userID = $user->getID();
      
-     var_dump($desc.$type.$amount.$frequency.$date.$userid);
-     echo("userId: ".$userID);
-     var_dump($_SESSION);
-     
      $operator = new DbOperator();
      $operator->addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date);
      
      $printStr = $operator->getAllIncomeByUserID($userID);
+    }
+    
+        /**
+     * Handles all logic for the user adding income.
+     * @param $f3 Fat Free object
+     */
+    public function addExpense($f3) {
+     $desc = $_POST['description'];
+     $type = $_POST['type'];
+     $amount = $_POST['amount'];
+     $frequency = $_POST['frequency'];
+     $date = $_POST['date'];
+     $user = $_SESSION['user'];
+     $userID = $user->getID();
      
-     var_dump($printStr);
-  
+     $operator = new DbOperator();
+     $operator->addExpenseByUserID($userID,$desc,$type,$amount,$frequency,$date);
+     
+     $result = $operator->getAllExpenseByUserID($userID);
+     
+    var_dump($result);
     }
 
     

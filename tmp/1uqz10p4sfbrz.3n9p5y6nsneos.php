@@ -2,7 +2,7 @@
    
    <div class="container">
         <div class="container col-md-9 text-left">
-            <h1>Add Expense</h1>
+            <h1>Add Income</h1>
         </div>
         <div class="container col-md-8">
             <form action="addincome" method="POST">
