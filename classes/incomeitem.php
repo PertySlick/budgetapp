@@ -17,7 +17,7 @@
  * @version 1.0
  * @see Transaction
  */
-abstract class IncomeItem extends Transaction {
+class IncomeItem extends Transaction {
 
 
 // FIELDS

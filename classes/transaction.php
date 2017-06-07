@@ -21,7 +21,7 @@
  * @see IncomeItem
  * @see ExpenseItem
  */
-class Transaction {
+abstract class Transaction {
 
 
 // FIELDS

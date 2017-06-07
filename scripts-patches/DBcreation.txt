@@ -16,7 +16,7 @@ CREATE TABLE incomeDtl(
 incomeid int NOT NULL primary key AUTO_INCREMENT,
 description varchar(255),
 incometype varchar(255),
-amount double(4,2),
+amount double(18,2),
 frequency text,
 user_userID int,
 effectivedate date
@@ -25,7 +25,7 @@ effectivedate date
 CREATE TABLE expenseDtl(
 expenseid int NOT NULL primary key AUTO_INCREMENT,
 description varchar(255),
-amount double(4,2),
+amount double(18,2),
 expensetype varchar(255),
 frequency text,
 duedate date,

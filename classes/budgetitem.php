@@ -17,7 +17,7 @@
  * @version 1.0
  * @see Transaction
  */
-abstract class BudgetItem extends Transaction {
+class BudgetItem extends Transaction {
 
 
 // CONSTRUCTOR

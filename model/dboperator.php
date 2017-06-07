@@ -202,7 +202,7 @@ class DbOperator
      * @return $resultArray array of top 3 income transactions for user.
      */
     public function getTopThreeIncomeByUserID($userID){
-        $stmt = $this->_conn->prepare('SELECT TOP 3 * FROM incomeDtl WHERE user_userID = :user_userID and effectivedate > CURRENT_DATE() ORDER BY effectivedate DESC');
+        $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE user_userID = :user_userID and effectivedate > CURRENT_DATE() ORDER BY effectivedate DESC LIMIT 5');
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         
         try {
@@ -231,8 +231,7 @@ class DbOperator
         return $this->_conn->lastInsertId();
         
     }
-    
-    
+       
     
      /**
      * Creates a new expense record for user
@@ -280,9 +279,10 @@ class DbOperator
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
                 $duedate = $row['duedate'];
+                $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new Transaction ($amount,$expenseType,$duedate);
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -303,8 +303,8 @@ class DbOperator
      */
       
     public function getTopThreeExpenseByUserID($userID){
-        $stmt = $this->_conn->prepare('SELECT TOP 3 expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
-                                      FROM expenseDtl WHERE user_userID = :user_userID and duedate > CURRENT_DATE() ORDER BY duedate');
+        $stmt = $this->_conn->prepare('SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
+                                      FROM expenseDtl WHERE user_userID = :user_userID and duedate > CURRENT_DATE() ORDER BY duedate LIMIT 5');
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         
         try {
@@ -319,9 +319,10 @@ class DbOperator
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
                 $duedate = $row['duedate'];
+                $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new Transaction ($amount,$expenseType,$duedate);
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -331,8 +332,49 @@ class DbOperator
         } catch (PDOException $e) {
             die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
         }        
-        return $this->_conn->lastInsertId();
+    
         
+    }
+    
+    /**
+     *Get the top 5 transacions for a user.
+     *@param $userID int id of the user stored in session.
+     *
+     */
+    
+    public function getTopFiveTransactionsByUserID($userID){       
+        
+        $stmt = $this->_conn->prepare('  "SELECT ed.description, ed.duedate, ed.amount FROM expenseDtl ed WHERE user_userID = :user_UserID LIMIT 3
+            UNION ALL SELECT id.description, id.effectivedate, id.amount FROM incomeDtl id WHERE user_userID = :user_UserID LIMIT 2";');
+        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
+        
+        try {
+            $results = $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resultArray =  [];
+            foreach($results as $row){
+                //assign properties of class to variable
+                $expenseID = $row['expenseid'];
+                $desc = $row['description'];
+                $expenseType = $row['expenseType'];
+                $amount = $row['amount'];
+                $userID = $row['user_userID'];
+                $duedate = $row['duedate'];
+                $createdate = $row['createdate'];
+                
+                //create new incomeitem object 
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
+                //add object to array
+                array_push($resultArray,$expense);                
+            }
+            
+            return $resultArray;
+        
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }        
+   
+          
     }
     
     

@@ -17,7 +17,7 @@
  * @version 1.0
  * @see Transaction
  */
-abstract class ExpenseItem extends Transaction {
+class ExpenseItem extends Transaction {
 
 
 // FIELDS
