@@ -36,8 +36,8 @@ class ExpenseItem extends Transaction {
      * @param $datePosted string date expense item was created
      * @param $dateApplied string date expense item actually applies
      */
-    public function __contruct($amount, $category, $datePosted, $dateApplied) {
-        parent::__construct($amount, $category, $datePosted, $dateApplied);
+    public function __contruct($amount, $category, $datePosted, $dateApplied,$id) {
+        parent::__construct($amount, $category, $datePosted, $dateApplied,$id);
     }
 
 

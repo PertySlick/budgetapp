@@ -88,6 +88,27 @@
       echo \Template::instance()->render('view/addexpense.html');
     });
      
+         //show expense overview page
+     $f3->route('GET @expenseOverview: /expenseoverview', function($f3) use ($controller) {
+    $controller->expenseOverview($f3);
+    echo \Template::instance()->render('view/expenseoverview.html');
+    });
+     
+    //remove an expense
+    $f3->route('GET /removeExpense/id=@id', function($f3,$params) use ($controller) {
+    $controller->removeExpense($f3,$params);
+    $f3->reroute('@expenseOverview');
+    });
+     
+    //edit an expense
+    $f3->route('GET /editExpense/id=@id', function($f3,$params) use ($controller) {
+    $controller->editExpense($f3,$params);
+    echo \Template::instance()->render('view/editexpense.html');
+    });
+
+     
+     
+     
     
     // Allow user to create a new income item
     $f3->route('GET /addincome', function($f3) use ($controller) { 
@@ -102,7 +123,7 @@
      echo \Template::instance()->render('view/addincome.html');
     });
     
-    // Allow user to create a new income item
+    // Allow user to edit an income item
     $f3->route('GET /editincome/@id', function($f3,$params) use ($controller) {
     $controller->editIncome($f3,$params);
     echo \Template::instance()->render('view/editincome.html');

@@ -139,8 +139,40 @@ class Controller {
     var_dump($result);
     }
     
+    public function editExpense($f3,$params){
+        
+     $expenseID = $params['id'];
+     $desc = $_POST['description'];
+     $type = $_POST['type'];
+     $amount = $_POST['amount'];
+     $frequency = $_POST['frequency'];
+     $date = $_POST['date'];
+     $user = $_SESSION['user'];
+     $userID = $user->getID();
+     
+     $operator = new DbOperator();
+     $result = $operator->getExpenseByExpenseID($expenseID);
+     $f3->set('expenseRecord',$result);
+       
+    }
+    
+    
+    
     /**
-     *Get the all the income transactions and return as array of incomeItems to view
+     *Getall the expense transactions and return as array of ExpenseItem to view
+     */
+    public function expenseOverview($f3){
+        $user = $_SESSION['user'];
+        $userID = $user->getID();
+        $operator = new DbOperator();        
+        $results = $operator->getAllExpenseByUserID($userID);
+        
+        $f3->set("expenseRecords",$results); 
+    }
+    
+    
+    /**
+     *Get  all the income transactions and return as array of incomeItems to view
      */
     public function incomeOverview($f3){
         $user = $_SESSION['user'];
@@ -159,6 +191,16 @@ class Controller {
         $operator = new DbOperator();        
         $results = $operator->removeIncomeByID($incomeID);         
     }
+    
+        /**
+     *Remove the income record by incomeID
+     */
+    public function removeExpense($f3,$params){
+        $incomeID = $params['id'] ;
+        $operator = new DbOperator();        
+        $results = $operator->removeExpenseByID($incomeID);         
+    }
+    
     
     
 

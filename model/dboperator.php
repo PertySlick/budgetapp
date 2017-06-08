@@ -335,14 +335,14 @@ class DbOperator
                 //assign properties of class to variable
                 $expenseID = $row['expenseid'];
                 $desc = $row['description'];
-                $expenseType = $row['expenseType'];
+                $expenseType = $row['expensetype'];
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
                 $duedate = $row['duedate'];
                 $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -420,7 +420,8 @@ class DbOperator
                 $duedate = $row['duedate'];
                 $createdate = $row['createdate'];                
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$expense);                
             }            
@@ -477,7 +478,7 @@ class DbOperator
     public function removeExpenseByID($expenseID){
         
         try{
-            $stmt = $this->_conn->prepare('DELETE * FROM expenseDtl WHERE expenseID = :expenseID');
+            $stmt = $this->_conn->prepare('DELETE FROM expenseDtl WHERE expenseID = :expenseID');
             $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_STR);
             $stmt->execute();
         }      
@@ -485,6 +486,23 @@ class DbOperator
             die ("(!) There was an error removing expense with id: " . $expenseID . " from the database... " . $e);
         }
         
+    }
+    
+    /**
+     *Updates expense record by ExpenseID
+     */
+    public function updateExpenseRecordByID($expenseID){
+           $stmt = $this->_conn->prepare('Update');
+            $stmt->bindParam(':user_userID', $expenseID, PDO::PARAM_STR);
+        
+        try {
+                        
+            }
+            
+        
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }   
     }
     
     

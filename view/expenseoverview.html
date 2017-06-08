@@ -1,0 +1,42 @@
+<include href="resources/template_header.inc.html" />   
+   
+   <div class="container">
+        <div class="container col-md-12 ">
+            <h1>Income Overview</h1>
+    
+      <table class="table table-striped table-responsive table-hover">
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Effective Date</th>
+        <th>Frequency</th>
+        <th>Actions</th>
+        
+
+             <repeat group="{{@expenseRecords}}" value="{{@item}}">
+                <tr>
+                <td>{{@item->getID()}}</td>
+                 <td>{{@item->getAmount()}}</td>
+                  <td>{{@item->getDescription()}}</td>
+                   <td>{{@item->getDateApplied()}}</td>
+                   <td>Monthly</td>
+                   <td>
+                    <div class="row col-md-6"><a href="editExpense/id={{@item->getID()}}"><span class="glyphicon glyphicon-edit"></span></a></div>
+                     <div class="row col-md-6"><a href="removeExpense/id={{@item->getID()}}"><span class="glyphicon glyphicon-trash"></span></a></div>
+                   </td>
+                   </tr>
+            </repeat>
+             
+      </table>
+
+       
+            
+     
+        </div>
+        
+      
+        
+   </div>
+   
+   
+<include href="resources/template_footer.inc.html">
