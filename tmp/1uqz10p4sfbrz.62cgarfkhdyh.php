@@ -11,7 +11,6 @@
         <th>Effective Date</th>
         <th>Actions</th>
         
-        <?= var_dump($incomeRecords).PHP_EOL ?>
              <?php foreach (($incomeRecords?:[]) as $item): ?>
                 <tr>
                 <td><?= $item->getID() ?></td>

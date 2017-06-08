@@ -69,7 +69,7 @@ abstract class Transaction {
      * Returns the category stored for this transaction
      * @return String category of transaction
      */
-    protected function getCategory() {
+    public function getCategory() {
         return $this->category;
     }
     
@@ -87,7 +87,7 @@ abstract class Transaction {
      * Returns the date this transaction was created in a display format
      * @return String date transaction was posted
      */
-    protected function getDatePosted() {
+    public function getDatePosted() {
         return  $this->datePosted ;
     }
     
@@ -96,7 +96,7 @@ abstract class Transaction {
      * Returns the month this transaction actually applies in a display format
      * @return String month this transaction applies
      */
-    protected function getApplyMonth() {
+    public function getApplyMonth() {
         return date("m", $this->dateApplied);
     }
     

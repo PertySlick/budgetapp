@@ -101,6 +101,23 @@ class Controller {
   
     }
     
+    public function editIncome($f3,$params){
+        
+     $incomeID = $params['id'];
+     $desc = $_POST['description'];
+     $type = $_POST['type'];
+     $amount = $_POST['amount'];
+     $frequency = $_POST['amount'];
+     $date = $_POST['date'];
+     $user = $_SESSION['user'];
+     $userID = $user->getID();
+     
+     $operator = new DbOperator();
+     $result = $operator->getIncomeByIncomeID($incomeID);
+     $f3->set('incomeRecord',$result);
+       
+    }
+    
         /**
      * Handles all logic for the user adding income.
      * @param $f3 Fat Free object

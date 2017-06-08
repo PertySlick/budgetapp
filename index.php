@@ -94,11 +94,20 @@
       echo \Template::instance()->render('view/addincome.html');
     });
     
+ 
+    
     //Posting new income item
     $f3->route('POST /addincome', function($f3) use ($controller) {
     $controller->addIncome($f3);
      echo \Template::instance()->render('view/addincome.html');
     });
+    
+    // Allow user to create a new income item
+    $f3->route('GET /editincome/@id', function($f3,$params) use ($controller) {
+    $controller->editIncome($f3,$params);
+    echo \Template::instance()->render('view/editincome.html');
+    });
+
     //show income overview page
      $f3->route('GET @incomeOverview: /incomeoverview', function($f3) use ($controller) {
     $controller->incomeOverview($f3);
