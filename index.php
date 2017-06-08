@@ -99,11 +99,19 @@
     $controller->addIncome($f3);
      echo \Template::instance()->render('view/addincome.html');
     });
-    
-     $f3->route('GET /incomeoverview', function($f3) use ($controller) {
+    //show income overview page
+     $f3->route('GET @incomeOverview: /incomeoverview', function($f3) use ($controller) {
     $controller->incomeOverview($f3);
     echo \Template::instance()->render('view/incomeoverview.html');
     });
+    
+    //remove an income record and reroute to income overview
+    $f3->route('GET /removeIncome/id=@id', function($f3,$params) use ($controller) {
+    $controller->removeIncome($f3,$params);
+    $f3->reroute('@incomeOverview');
+    });
+
+    
 
     // Allow visitor to register as a new user
     $f3->route('GET /signup', function($f3) use ($controller) {

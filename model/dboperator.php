@@ -142,15 +142,17 @@ class DbOperator
      * @return $ 
      */
     public function addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date){
+        $today = date('Y-m-d H:i:s');
         $stmt = $this->_conn->prepare('INSERT INTO incomeDtl ' .
-                                      '(description, incometype, amount,frequency,user_userID, effectivedate) ' .
-                                      'VALUES (:desc, :type, :amount, :frequency, :user_userID, :effectivedate) ');
+                                      '(description, incometype, amount,frequency,user_userID, effectivedate, createdate) ' .
+                                      'VALUES (:desc, :type, :amount, :frequency, :user_userID, :effectivedate, :createdate) ');
         $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_STR);
         $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
         $stmt->bindParam(':frequency', $frequency, PDO::PARAM_STR);
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         $stmt->bindParam(':effectivedate', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':createdate', $today, PDO::PARAM_STR);
         
         try {
             $stmt->execute();
@@ -180,9 +182,10 @@ class DbOperator
                 $incomeType = $row['incometype'];
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
-                $effectiveDate = $row['effectiveDate'];                
+                $effectiveDate = $row['effectivedate'];                
+                $createDate = $row['createdate'];  
                 //create new incomeitem object 
-                $income = new IncomeItem ($amount,$incomeType,$effectiveDate,$effectiveDate);
+                $income = new IncomeItem ($amount,$incomeType,$createDate,$effectiveDate,$incomeID);
                 $income->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$income);                
@@ -195,6 +198,43 @@ class DbOperator
         }        
         return $this->_conn->lastInsertId();
         
+    }
+    
+    /**
+     *Retrieve a single income record by IncomeID
+     *@param $incomeID int The incomeID of the income record
+     *@return $resultArray the associative array containing the income record
+     */
+     public function getIncomeByIncomeID($incomeID){
+        $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE incomeid = :incomeID');
+        $stmt->bindParam(':incomeID', $incomeID, PDO::PARAM_STR);
+        
+        try {
+            $results = $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resultArray =  [];
+            foreach($results as $row){
+                //assign properties of class to variable
+                $incomeID = $row['incomeid'];
+                $desc = $row['description'];
+                $incomeType = $row['incometype'];
+                $amount = $row['amount'];
+                $userID = $row['user_userID'];
+                $effectiveDate = $row['effectivedate'];                
+                $createDate = $row['createdate'];  
+                //create new incomeitem object 
+                $income = new IncomeItem ($amount,$incomeType,$createDate,$effectiveDate,$incomeID);
+                $income->setDescription($desc);
+                //add object to array
+                array_push($resultArray,$income);                
+            }
+            
+            return $resultArray;
+        
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }        
+        return $this->_conn->lastInsertId();        
     }
     
       /**
@@ -217,9 +257,10 @@ class DbOperator
                 $incomeType = $row['incometype'];
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
-                $effectiveDate = $row['effectiveDate'];                
+                $effectiveDate = $row['effectivedate'];
+                $createDate = $row['createdate'];  
                 //create new incomeitem object 
-                $income = new Transaction ($amount,$incomeType,$effectivedate);
+                $income = new IncomeItem ($amount,$incomeType,$createDate,$effectiveDate,$incomeID);
                 //add object to array
                 array_push($resultArray,$income);                
             }
@@ -230,6 +271,24 @@ class DbOperator
             die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
         }        
         return $this->_conn->lastInsertId();
+        
+    }
+    
+    
+        /**
+     * Remove income record by incomeID
+     */
+    public function removeIncomeByID($incomeID){
+        
+        try{
+            $stmt = $this->_conn->prepare('DELETE FROM incomeDtl WHERE incomeID = :incomeID');
+            $stmt->bindParam(':incomeID', $incomeID, PDO::PARAM_INT);
+            $stmt->execute();
+        }      
+        catch (PDOException $e) {
+            die ("(!) There was an error removing expense with id: " . $incomeID . " from the database... " . $e);
+        }
+        
         
     }
        
@@ -245,7 +304,7 @@ class DbOperator
     public function addExpenseByUserID($userID,$desc,$type,$amount,$frequency,$date){
         $today = date('Y-m-d H:i:s');
         $stmt = $this->_conn->prepare('INSERT INTO expenseDtl ' .
-                                      '(description, expensetype, amount,frequency,user_userID, duedate,createdate) ' .
+                                      '(description, expensetype, amount,frequency,user_userID, duedate, createdate) ' .
                                       'VALUES (:desc, :type, :amount, :frequency, :user_userID, :duedate, :createdate) ');
         $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_STR);
@@ -283,7 +342,7 @@ class DbOperator
                 $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -323,7 +382,7 @@ class DbOperator
                 $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -336,6 +395,41 @@ class DbOperator
     
         
     }
+    
+     /**
+     * Retrieves expense record by ExpeneseID 
+     * @param $expenseID ID of the expense record.
+     * @return $resultArray array expense record.
+     */      
+    public function getExpenseByExpenseID($expenseID){
+        $stmt = $this->_conn->prepare('SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
+                                      FROM expenseDtl WHERE expenseID = :expenseID');
+        $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_STR);
+        
+        try {
+            $results = $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resultArray =  [];
+            foreach($results as $row){
+                //assign properties of class to variable
+                $expenseID = $row['expenseid'];
+                $desc = $row['description'];
+                $expenseType = $row['expenseType'];
+                $amount = $row['amount'];
+                $userID = $row['user_userID'];
+                $duedate = $row['duedate'];
+                $createdate = $row['createdate'];                
+                //create new incomeitem object 
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                //add object to array
+                array_push($resultArray,$expense);                
+            }            
+            return $resultArray;
+        
+        } catch (PDOException $e) {
+            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+        }        
+    }  
     
     /**
      *Get the top 5 transacions for a user.
@@ -364,7 +458,7 @@ class DbOperator
                 $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate);
+                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
                 //add object to array
                 array_push($resultArray,$expense);                
             }

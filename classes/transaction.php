@@ -31,6 +31,7 @@ abstract class Transaction {
     protected $category;                    // Category of this transaction
     protected $dateApplied;                 // Date transaction applies
     protected $datePosted;                  // Date transaction was created
+    protected $id;                          // the Expense or Income ID of the item
 
 
 // CONSTRUCTOR
@@ -43,10 +44,12 @@ abstract class Transaction {
      * @param $datePosted string date transaction was created
      * @param $dateApplied string date transaction actually applies
      */
-    public function __construct($amount, $category, $datePosted) {
+    public function __construct($amount, $category, $datePosted, $dateApplied,$id) {
         $this->setAmount($amount);
         $this->setCategory($category);
         $this->setDatePosted($datePosted);
+        $this->setDateApplied($dateApplied);       
+        $this->setID($id);
     }
 
 
@@ -75,8 +78,8 @@ abstract class Transaction {
      * Returns the date this transaction actually applies in a display format
      * @return String date transaction applies
      */
-    protected function getDateApplied() {
-        return date("F jS, Y", $this->dateApplied);
+    public function getDateApplied() {
+        return  $this->dateApplied ;
     }
     
     
@@ -85,7 +88,7 @@ abstract class Transaction {
      * @return String date transaction was posted
      */
     protected function getDatePosted() {
-        return date("F jS, Y", $this->datePosted);
+        return  $this->datePosted ;
     }
     
     
@@ -95,6 +98,10 @@ abstract class Transaction {
      */
     protected function getApplyMonth() {
         return date("m", $this->dateApplied);
+    }
+    
+    public function getID(){
+        return $this->id;
     }
 
 
@@ -106,6 +113,13 @@ abstract class Transaction {
      * amount of this transaction.
      */
      protected function setAmount($value){
+     }
+     
+     /**
+      *set the expenseID or incomeID
+      */
+     protected function setID($id){
+        $this->id = $id;
      }
 
 
@@ -129,7 +143,7 @@ abstract class Transaction {
      * must be supplied as it is then converted to a time value and stored.
      */
     protected function setDateApplied($value) {
-        $this->dateApplied = strtotime($value);
+        $this->dateApplied = $value ;
     }
     
     /**
@@ -137,6 +151,6 @@ abstract class Transaction {
      * supplied as it is then converted to a time value and stored.
      */
     protected function setDatePosted($value) {
-        $this->datePosted = strtotime($value);
+        $this->datePosted = $value;
     }
 }

@@ -131,8 +131,16 @@ class Controller {
         $operator = new DbOperator();        
         $results = $operator->getAllIncomeByUserID($userID);
         
-        $f3->set("incomeRecords",$results);
-        
+        $f3->set("incomeRecords",$results); 
+    }
+    
+    /**
+     *Remove the income record by incomeID
+     */
+    public function removeIncome($f3,$params){
+        $incomeID = $params['id'] ;
+        $operator = new DbOperator();        
+        $results = $operator->removeIncomeByID($incomeID);         
     }
     
     

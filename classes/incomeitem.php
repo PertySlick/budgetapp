@@ -21,10 +21,7 @@ class IncomeItem extends Transaction {
 
 
 // FIELDS
-
-
     protected $description;                 // Description for this income item
-
 
 // CONSTRUCTOR
 
@@ -36,8 +33,8 @@ class IncomeItem extends Transaction {
      * @param $datePosted string date income item was created
      * @param $dateApplied string date income item actually applies
      */
-    public function __contruct($amount, $category, $datePosted, $dateApplied) {
-        parent::__construct($amount, $category, $datePosted, $dateApplied);
+    public function __contruct($amount, $category, $datePosted, $dateApplied, $id) {
+        parent::__construct($amount, $category, $datePosted, $dateApplied, $id);
     }
 
 
@@ -51,6 +48,8 @@ class IncomeItem extends Transaction {
     public function getDescription() {
         return $this->description;
     }
+    
+
 
 
 // METHODS - SETTERS

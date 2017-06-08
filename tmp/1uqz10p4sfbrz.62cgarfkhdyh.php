@@ -3,23 +3,33 @@
    <div class="container">
         <div class="container col-md-12 ">
             <h1>Income Overview</h1>
-            
-            
-            <?= var_dump($incomeRecords).PHP_EOL ?>
-            
-            <p><?= $incomeRecords[0]->getAmount() ?></p>
-       <p><?= $incomeRecords[1]->getAmount() ?></p>
-        <p><?= $incomeRecords[2]->getAmount() ?></p>
-                      
-            <?php foreach (($incomeRecords?:[]) as $item): ?>
-                <p><?= $item->getAmount() ?></p>
+      
+      <table class="table table-striped table-responsive table-hover">
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Effective Date</th>
+        <th>Actions</th>
+        
+        <?= var_dump($incomeRecords).PHP_EOL ?>
+             <?php foreach (($incomeRecords?:[]) as $item): ?>
+                <tr>
+                <td><?= $item->getID() ?></td>
+                 <td><?= $item->getAmount() ?></td>
+                  <td><?= $item->getDescription() ?></td>
+                   <td><?= $item->getDateApplied() ?></td>
+                   <td>
+                    <div class="row col-md-6"><a href="editIncome/id=<?= $item->getID() ?>"><span class="glyphicon glyphicon-edit"></span></a></div>
+                     <div class="row col-md-6"><a href="removeIncome/id=<?= $item->getID() ?>"><span class="glyphicon glyphicon-trash"></span></a></div>
+                   </td>
+                   </tr>
             <?php endforeach; ?>
+             
+      </table>
+
+       
             
      
-  
-       
-      
- 
         </div>
         
       
