@@ -98,8 +98,7 @@ class Controller {
      
      $operator = new DbOperator();
      $operator->addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date);
-     
-     $printStr = $operator->getAllIncomeByUserID($userID);
+  
     }
     
         /**
@@ -122,6 +121,21 @@ class Controller {
      
     var_dump($result);
     }
+    
+    /**
+     *Get the all the income transactions and return as array of incomeItems to view
+     */
+    public function incomeOverview($f3){
+        $user = $_SESSION['user'];
+        $userID = $user->getID();
+        $operator = new DbOperator();        
+        $results = $operator->getAllIncomeByUserID($userID);
+        
+        $f3->set("incomeRecords",$results);
+        
+    }
+    
+    
 
     
     

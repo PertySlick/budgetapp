@@ -182,7 +182,8 @@ class DbOperator
                 $userID = $row['user_userID'];
                 $effectiveDate = $row['effectiveDate'];                
                 //create new incomeitem object 
-                $income = new Transaction ($amount,$incomeType,$effectivedate);
+                $income = new IncomeItem ($amount,$incomeType,$effectiveDate,$effectiveDate);
+                $income->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$income);                
             }
@@ -375,6 +376,21 @@ class DbOperator
         }        
    
           
+    }
+    /**
+     * Remove expense record by expenseID
+     */
+    public function removeExpenseByID($expenseID){
+        
+        try{
+            $stmt = $this->_conn->prepare('DELETE * FROM expenseDtl WHERE expenseID = :expenseID');
+            $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_STR);
+            $stmt->execute();
+        }      
+        catch (PDOException $e) {
+            die ("(!) There was an error removing expense with id: " . $expenseID . " from the database... " . $e);
+        }
+        
     }
     
     

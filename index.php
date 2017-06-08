@@ -44,7 +44,7 @@
     // Logged in user's main summary page
     $f3->route('GET /userHome', function($f3) use ($controller) {
       $controller->userHome($f3);
-      echo \Template::instance()->render('view/home.html');
+      echo \Template::instance()->render('view/summary.html');
     });
     
     // Logged in user's income summary
@@ -79,18 +79,18 @@
     
     // Allow user to create a new expense item
     $f3->route('GET /addexpense', function($f3) use ($controller) {
-      $controller->addExpense($f3);
       echo \Template::instance()->render('view/addexpense.html');
     });
     
+    //post method to add expense
       $f3->route('POST /addexpense', function($f3) use ($controller) {
       $controller->addExpense($f3);
       echo \Template::instance()->render('view/addexpense.html');
     });
+     
     
     // Allow user to create a new income item
-    $f3->route('GET /addincome', function($f3) use ($controller) {
-      $controller->addIncome($f3);
+    $f3->route('GET /addincome', function($f3) use ($controller) { 
       echo \Template::instance()->render('view/addincome.html');
     });
     
@@ -100,6 +100,11 @@
      echo \Template::instance()->render('view/addincome.html');
     });
     
+     $f3->route('GET /incomeoverview', function($f3) use ($controller) {
+    $controller->incomeOverview($f3);
+    echo \Template::instance()->render('view/incomeoverview.html');
+    });
+
     // Allow visitor to register as a new user
     $f3->route('GET /signup', function($f3) use ($controller) {
       $controller->register($f3);

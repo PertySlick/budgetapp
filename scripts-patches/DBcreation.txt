@@ -33,6 +33,12 @@ user_userID int,
 createdate date
 );
 
+CREATE TABLE category(
+categoryid int NOT NULL primary key AUTO_INCREMENT,
+description varchar(255)
+);
+
+
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userName VARCHAR(30) NOT NULL,

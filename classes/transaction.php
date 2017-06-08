@@ -57,7 +57,7 @@ abstract class Transaction {
      * Returns the dollar amount stored for this transaction
      * @return int dollar amount for transaction
      */
-    protected function getAmount() {
+    public function getAmount() {
         return $this->amount;
     }
     
