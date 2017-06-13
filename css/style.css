@@ -7,18 +7,42 @@
  */
 
 body {
-  padding-top: 50px;
-}
-
-.help-block {
-  font-size: .8em;
-}
-
-.login-cont{
-  background-color:white;
+  padding-top: 70px;
 }
 
 .big-lbl {
-        height: 25px;
+  height: 25px;
 }
+
+.help-block {
+  font-size: 0.8em;
+}
+
+.login-cont {
+  background-color: white;
+}
+
+.panel {
+  border-radius: 10px;
+}
+
+.panel-heading {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.panel-heading a:hover {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.table {
+  margin-bottom: 0px !important;
+}
+
+tr:first-child td{
+  border-top: 0px !important;
+}
+
+
 

@@ -129,11 +129,13 @@ abstract class Transaction {
      * is then set as 'other'.  Otherwise it is entered as supplied.
      */
     protected function setCategory($value) {
+        /*
         $categories = array('Gas', 'Groceries', 'Auto Maintenance',
                             'Home Maintenance', 'Clothing', 'Medical',
                             'Clothing', 'Recreation', 'Other');
+                            
         
-        if (!in_array($value, $categories)) $value = 'Other';
+        if (!in_array($value, $categories)) $value = 'Other';*/
         $this->category = $value;
     }
     

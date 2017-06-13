@@ -7,5 +7,14 @@
  */
 
 $(document).ready(function() {
-
+  $('#transactions').DataTable();
+  $('#month, #year').change(function() {
+    var month = $('#month').val();
+    var year = $('#year').val();
+    console.log("Path: " + window.location.pathname);
+    console.log("Protocol: " + window.location.protocol);
+    console.log("Host: " + window.location.host);
+    console.log("Location: " + window.location);
+    window.location = "/328/budgetapp/userHome/" + year + "/" + month;
+  });
 });

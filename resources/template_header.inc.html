@@ -41,17 +41,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ @BASE }}">BudgetApp</a>
+        <a class="navbar-brand" href="{{ @BASE }}">R & P Budgeting</a>
       </div>
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">
           <check if="{{ @userStatus }}">
             <true>
-              <li class="{{ @PATH=='/userHome'?'active':'' }}"><a href="userHome" title="My Budget Summary">Summary</a></li>
-              <li class="{{ @PATH=='/income'?'active':'' }}"><a href="income" title="Manage Your Income">My Income</a></li>
-              <li class="{{ @PATH=='/expense'?'active':'' }}"><a href="expense" title="Manage Your Expenses">My Expenses</a></li>
-              <li class="{{ @PATH=='/budget'?'active':'' }}"><a href="budget" title="Manage Your Budget">My Budget</a></li>
-              <li class="{{ @PATH=='/logout'?'active':'' }}"><a href="logout" title="Log Out">Log Out</a></li>
+              <li class="{{ @PATH=='/userHome'?'active':'' }}"><a href="{{ @BASE . '/userhome' }}" title="My Budget Summary">Summary</a></li>
+              <li class="{{ @PATH=='/income'?'active':'' }}"><a href="{{ @BASE . '/income' }}" title="Manage Your Income">My Income</a></li>
+              <li class="{{ @PATH=='/expense'?'active':'' }}"><a href="{{ @BASE . '/expense' }}" title="Manage Your Expenses">My Expenses</a></li>
+              <li class="{{ @PATH=='/logout'?'active':'' }}"><a href="{{ @BASE . '/logout' }}" title="Log Out">Log Out</a></li>
             </true>
             <false>
               <li class="{{ @PATH=='/'?'active':'' }}"><a href="{{ @BASE }}" title="Home">Home</a></li>

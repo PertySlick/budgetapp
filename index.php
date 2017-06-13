@@ -37,38 +37,39 @@
     
     // Default route - main home page
     $f3->route('GET /', function($f3) use ($controller) {
-      $controller->home($f3);
-      echo \Template::instance()->render('view/home.html');
+        $controller->home($f3);
+        echo \Template::instance()->render('view/home.html');
     });
     
     // Logged in user's main summary page
     $f3->route('GET /userHome', function($f3) use ($controller) {
-      $controller->userHome($f3);
-      echo \Template::instance()->render('view/summary.html');
+        $controller->userHome($f3);
+        echo \Template::instance()->render('view/summary.html');
+    });
+    
+    // Logged in user's main summary page by time period
+    $f3->route('GET /userHome/@year/@month', function($f3, $params) use ($controller) {
+        $controller->userHomeParams($f3, $params);
+        echo \Template::instance()->render('view/summary.html');
     });
     
     // Logged in user's income summary
     $f3->route('GET /income', function($f3) use ($controller) {
-      $controller->income($f3);
-      echo \Template::instance()->render('view/home.html');
+        $controller->incomeoverview($f3);
+        echo \Template::instance()->render('view/incomeoverview.html');
     });
     
     // Logged in user's expense summary
     $f3->route('GET /expense', function($f3) use ($controller) {
-      $controller->expense($f3);
-      echo \Template::instance()->render('view/home.html');
+        $controller->expenseoverview($f3);
+        echo \Template::instance()->render('view/expenseoverview.html');
     });
     
-    // Logged in user's budget summary
-    $f3->route('GET /budget', function($f3) use ($controller) {
-      $controller->budget($f3);
-      echo \Template::instance()->render('view/home.html');
-    });
     
     // User log in and authentication
     $f3->route('GET|POST /login', function($f3) use ($controller) {
-      $controller->login($f3);
-      echo \Template::instance()->render('view/login.html');
+        $controller->login($f3);
+        echo \Template::instance()->render('view/login.html');
     });
     
     // User log out and de-authentication
@@ -79,86 +80,80 @@
     
     // Allow user to create a new expense item
     $f3->route('GET /addexpense', function($f3) use ($controller) {
-      echo \Template::instance()->render('view/addexpense.html');
+        $controller->addExpense($f3);
+        echo \Template::instance()->render('view/transaction.html');
     });
     
-    //post method to add expense
-      $f3->route('POST /addexpense', function($f3) use ($controller) {
-      $controller->addExpense($f3);
-      echo \Template::instance()->render('view/addexpense.html');
+    // Allow user to create a new expense item
+    $f3->route('POST /addexpense', function($f3) use ($controller) {
+        $controller->addExpenseSubmit($f3);
+        echo \Template::instance()->render('view/transaction.html');
     });
-     
-         //show expense overview page
-     $f3->route('GET @expenseOverview: /expenseoverview', function($f3) use ($controller) {
-    $controller->expenseOverview($f3);
-    echo \Template::instance()->render('view/expenseoverview.html');
-    });
-     
+    
     //remove an expense
     $f3->route('GET /removeExpense/id=@id', function($f3,$params) use ($controller) {
-    $controller->removeExpense($f3,$params);
-    $f3->reroute('@expenseOverview');
+        $controller->removeExpense($f3,$params);
+        $f3->reroute('/expense');
     });
      
     //edit an expense
     $f3->route('GET /editExpense/id=@id', function($f3,$params) use ($controller) {
-    $controller->editExpense($f3,$params);
-    echo \Template::instance()->render('view/editexpense.html');
+        $controller->editExpense($f3,$params);
+        echo \Template::instance()->render('view/transaction.html');
     });
 
-     
-     
-     
-    
-    // Allow user to create a new income item
-    $f3->route('GET /addincome', function($f3) use ($controller) { 
-      echo \Template::instance()->render('view/addincome.html');
+    //edit an expense
+    $f3->route('POST /editExpense/id=@id', function($f3,$params) use ($controller) {
+        $controller->editExpenseSubmit($f3,$params);
+        echo \Template::instance()->render('view/transaction.html');
     });
     
- 
+    // Allow user to create a new income item
+    $f3->route('GET /addincome', function($f3) use ($controller) {
+        $controller->addIncome($f3);
+        echo \Template::instance()->render('view/transaction.html');
+    });
     
     //Posting new income item
     $f3->route('POST /addincome', function($f3) use ($controller) {
-    $controller->addIncome($f3);
-     echo \Template::instance()->render('view/addincome.html');
+        $controller->addIncomeSubmit($f3);
+        echo \Template::instance()->render('view/transaction.html');
     });
     
     // Allow user to edit an income item
-    $f3->route('GET /editincome/@id', function($f3,$params) use ($controller) {
-    $controller->editIncome($f3,$params);
-    echo \Template::instance()->render('view/editincome.html');
+    $f3->route('GET /editincome/id=@id', function($f3,$params) use ($controller) {
+        $controller->editIncome($f3,$params);
+        echo \Template::instance()->render('view/transaction.html');
     });
-
-    //show income overview page
-     $f3->route('GET @incomeOverview: /incomeoverview', function($f3) use ($controller) {
-    $controller->incomeOverview($f3);
-    echo \Template::instance()->render('view/incomeoverview.html');
+    
+    // Allow user to edit an income item
+    $f3->route('POST /editincome/id=@id', function($f3,$params) use ($controller) {
+        $controller->editIncomeSubmit($f3,$params);
+        echo \Template::instance()->render('view/transaction.html');
     });
     
     //remove an income record and reroute to income overview
     $f3->route('GET /removeIncome/id=@id', function($f3,$params) use ($controller) {
-    $controller->removeIncome($f3,$params);
-    $f3->reroute('@incomeOverview');
+        $controller->removeIncome($f3,$params);
+        $f3->reroute('/income');
     });
-
-    
 
     // Allow visitor to register as a new user
     $f3->route('GET /signup', function($f3) use ($controller) {
-      $controller->register($f3);
-      echo \Template::instance()->render('view/signup.html');
+        $controller->register($f3);
+        echo \Template::instance()->render('view/signup.html');
     });
     
     // Registration form after a submit attempt
     $f3->route('POST /signup', function($f3) use ($controller) {
-      $controller->registerSubmit($f3);
-      echo \Template::instance()->render('view/signup.html');
+        $controller->registerSubmit($f3);
+        echo \Template::instance()->render('view/signup.html');
     });
     
     // Site visitors want to learn more about us
     $f3->route('GET /about', function($f3) use ($controller) {
-      $controller->about($f3);
-      echo \Template::instance()->render('view/home.html');
+        $controller->about($f3);
+        echo \Template::instance()->render('view/aboutus.html');
     });
         
       

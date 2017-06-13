@@ -22,7 +22,7 @@
                       <span class="label label-default center-block big-lbl text-center" for="password">Password</span>
                     </div>
                     <div class="form-group col-md-9">
-                        <input class="form-control" type="text" name="password" id="password" required>
+                        <input class="form-control" type="password" name="password" id="password" required>
                     </div>
                 </div>
                 <div class="row col-md-offset-4">

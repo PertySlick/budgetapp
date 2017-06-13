@@ -141,15 +141,14 @@ class DbOperator
      * @param $date Date the date of the income posted.
      * @return $ 
      */
-    public function addIncomeByUserID($userID,$desc,$type,$amount,$frequency,$date){
+    public function addIncomeByUserID($userID,$desc,$type,$amount,$date){
         $today = date('Y-m-d H:i:s');
         $stmt = $this->_conn->prepare('INSERT INTO incomeDtl ' .
-                                      '(description, incometype, amount,frequency,user_userID, effectivedate, createdate) ' .
-                                      'VALUES (:desc, :type, :amount, :frequency, :user_userID, :effectivedate, :createdate) ');
+                                      '(description, incometype, amount,user_userID, effectivedate, createdate) ' .
+                                      'VALUES (:desc, :type, :amount, :user_userID, :effectivedate, :createdate) ');
         $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_STR);
         $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
-        $stmt->bindParam(':frequency', $frequency, PDO::PARAM_STR);
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         $stmt->bindParam(':effectivedate', $date, PDO::PARAM_STR);
         $stmt->bindParam(':createdate', $today, PDO::PARAM_STR);
@@ -157,7 +156,7 @@ class DbOperator
         try {
             $stmt->execute();
         } catch (PDOException $e) {
-            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+            die ("(!) There was an error adding income: " . $desc . " " . $amount . " - " . $e);
         }        
         return $this->_conn->lastInsertId();
     }
@@ -206,11 +205,35 @@ class DbOperator
      *@return $resultArray the associative array containing the income record
      */
      public function getIncomeByIncomeID($incomeID){
+        $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE incomeid = :incomeid');
+        $stmt->bindParam(':incomeid', $incomeID, PDO::PARAM_INT);
+       
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die ("(!) There was an error getting income: " . $incomeID . " - " . $e);
+        }
+        
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //assign properties of class to variable
+        $desc = $results['description'];
+        $category = $results['incometype'];
+        $amount = $results['amount'];
+        $userID = $results['user_userID'];
+        $applyDate = $results['effectivedate'];
+        $createDate = $results['createdate'];                
+        //create new expenseitem object 
+        $income = new IncomeItem($amount,$category,$createdate,$applyDate,$incomeID);
+        $income->setDescription($desc);
+        
+        return $income;
+        /*
         $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE incomeid = :incomeID');
         $stmt->bindParam(':incomeID', $incomeID, PDO::PARAM_STR);
         
         try {
-            $results = $stmt->execute();
+            $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $resultArray =  [];
             foreach($results as $row){
@@ -234,7 +257,7 @@ class DbOperator
         } catch (PDOException $e) {
             die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
         }        
-        return $this->_conn->lastInsertId();        
+        return $this->_conn->lastInsertId();*/   
     }
     
       /**
@@ -242,8 +265,14 @@ class DbOperator
      * @param $userID ID of user stored in session.
      * @return $resultArray array of top 3 income transactions for user.
      */
-    public function getTopThreeIncomeByUserID($userID){
-        $stmt = $this->_conn->prepare('SELECT * FROM incomeDtl WHERE user_userID = :user_userID and effectivedate > CURRENT_DATE() ORDER BY effectivedate DESC LIMIT 5');
+    public function getTopThreeIncomesByUserID($userID){
+        $stmt = $this->_conn->prepare(
+                'SELECT * ' .
+                'FROM incomeDtl ' .
+                'WHERE user_userID = :user_userID ' .
+                'AND effectivedate > CURRENT_DATE() ' .
+                'ORDER BY effectivedate ASC ' .
+                'LIMIT 3');
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         
         try {
@@ -261,6 +290,7 @@ class DbOperator
                 $createDate = $row['createdate'];  
                 //create new incomeitem object 
                 $income = new IncomeItem ($amount,$incomeType,$createDate,$effectiveDate,$incomeID);
+                $income->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$income);                
             }
@@ -301,15 +331,14 @@ class DbOperator
      * @param $frequency String how frequent the income is obtained.
      * @param $date Date the date of the income posted.
      */
-    public function addExpenseByUserID($userID,$desc,$type,$amount,$frequency,$date){
+    public function addExpenseByUserID($userID,$desc,$type,$amount,$date){
         $today = date('Y-m-d H:i:s');
         $stmt = $this->_conn->prepare('INSERT INTO expenseDtl ' .
-                                      '(description, expensetype, amount,frequency,user_userID, duedate, createdate) ' .
-                                      'VALUES (:desc, :type, :amount, :frequency, :user_userID, :duedate, :createdate) ');
+                                      '(description, expensetype, amount,user_userID, duedate, createdate) ' .
+                                      'VALUES (:desc, :type, :amount, :user_userID, :duedate, :createdate) ');
         $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
         $stmt->bindParam(':type', $type, PDO::PARAM_STR);
-        $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
-        $stmt->bindParam(':frequency', $frequency, PDO::PARAM_STR);
+        $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
         $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
         $stmt->bindParam(':duedate', $date, PDO::PARAM_STR);
         $stmt->bindParam(':createdate', $today, PDO::PARAM_STR);
@@ -321,6 +350,60 @@ class DbOperator
         }        
         return $this->_conn->lastInsertId();
     }
+    
+    
+    /**
+     * Edits an expense record for user.
+     * @param $desc String  description of income
+     * @param $type String description of type of income.
+     * @param $frequency String how frequent the income is obtained.
+     * @param $date Date the date of the income posted.
+     */
+    public function editExpenseByExpenseID($expenseID,$desc,$type,$amount,$date){
+     
+        $stmt = $this->_conn->prepare('UPDATE expenseDtl ' .
+                                      'SET description = :desc , expensetype = :type , amount = :amount , duedate = :duedate ' .
+                                      'WHERE expenseID = :expenseID');
+        $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+        $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+        $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_INT);
+        $stmt->bindParam(':duedate', $date, PDO::PARAM_STR);   
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die ("(!) There was an error editing expense of amount " . $amount . " and id: " . $expenseID . "in the database... " . $e);
+        }        
+    }
+
+
+    /**
+     * Edits an income record for user.
+     * @param $desc String  description of income
+     * @param $type String description of type of income.
+     * @param $frequency String how frequent the income is obtained.
+     * @param $date Date the date of the income posted.
+     */
+    public function editIncomeByIncomeID($incomeID,$desc,$type,$amount,$date){
+     
+        $stmt = $this->_conn->prepare('UPDATE incomeDtl ' .
+                                      'SET description = :desc , incometype = :type , amount = :amount , effectivedate = :duedate ' .
+                                      'WHERE incomeID = :incomeID');
+        $stmt->bindParam(':desc', $desc , PDO::PARAM_STR);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+        $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+        $stmt->bindParam(':incomeID', $incomeID, PDO::PARAM_INT);
+        $stmt->bindParam(':duedate', $date, PDO::PARAM_STR);   
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die ("(!) There was an error editing income transaction: " . $incomeID . " - " . $e);
+        }        
+    }
+
+    
     
      public function getAllExpenseByUserID($userID){
         $stmt = $this->_conn->prepare('SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
@@ -343,6 +426,7 @@ class DbOperator
                 
                 //create new incomeitem object 
                 $expense = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -363,9 +447,16 @@ class DbOperator
      */
       
     public function getTopThreeExpenseByUserID($userID){
-        $stmt = $this->_conn->prepare('SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
-                                      FROM expenseDtl WHERE user_userID = :user_userID and duedate > CURRENT_DATE() ORDER BY duedate LIMIT 5');
-        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
+        $stmt = $this->_conn->prepare(
+            'SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate ' .
+            'FROM expenseDtl ' .
+            'WHERE user_userID = :user_userID ' .
+            'AND duedate > CURRENT_DATE() ' .
+            'ORDER BY duedate ASC ' .
+            'LIMIT 3'
+            );
+        
+        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_INT);
         
         try {
             $results = $stmt->execute();
@@ -382,7 +473,8 @@ class DbOperator
                 $createdate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $expense->setDescription($desc);
                 //add object to array
                 array_push($resultArray,$expense);                
             }
@@ -390,7 +482,7 @@ class DbOperator
             return $resultArray;
         
         } catch (PDOException $e) {
-            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+            die ("(!) There was an error pulling the last 3 transactions... " . $e);
         }        
     
         
@@ -402,34 +494,30 @@ class DbOperator
      * @return $resultArray array expense record.
      */      
     public function getExpenseByExpenseID($expenseID){
-        $stmt = $this->_conn->prepare('SELECT expenseid,description,amount,expensetype,frequency,duedate,user_userID,createdate
-                                      FROM expenseDtl WHERE expenseID = :expenseID');
-        $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_STR);
-        
+        $stmt = $this->_conn->prepare('SELECT * FROM expenseDtl WHERE expenseID = :expenseID');
+        $stmt->bindParam(':expenseID', $expenseID, PDO::PARAM_INT);
+       
         try {
-            $results = $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $resultArray =  [];
-            foreach($results as $row){
-                //assign properties of class to variable
-                $expenseID = $row['expenseid'];
-                $desc = $row['description'];
-                $expenseType = $row['expenseType'];
-                $amount = $row['amount'];
-                $userID = $row['user_userID'];
-                $duedate = $row['duedate'];
-                $createdate = $row['createdate'];                
-                //create new incomeitem object 
-                $expense = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
-                $expense->setDescription($desc);
-                //add object to array
-                array_push($resultArray,$expense);                
-            }            
-            return $resultArray;
-        
+            $stmt->execute();
         } catch (PDOException $e) {
-            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
-        }        
+            die ("(!) There was an error editing expense: " . $$expenseid . " - " . $e);
+        }
+        
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //assign properties of class to variable
+        $expenseID = $results['expenseid'];
+        $desc = $results['description'];
+        $expenseType = $results['expensetype'];
+        $amount = $results['amount'];
+        $userID = $results['user_userID'];
+        $applyDate = $results['duedate'];
+        $createDate = $results['createdate'];                
+        //create new expenseitem object 
+        $expense = new ExpenseItem($amount,$expenseType,$createdate,$applyDate,$expenseID);
+        $expense->setDescription($desc);
+        
+        return $expense;
     }  
     
     /**
@@ -440,9 +528,22 @@ class DbOperator
     
     public function getTopFiveTransactionsByUserID($userID){       
         
-        $stmt = $this->_conn->prepare('  "SELECT ed.description, ed.duedate, ed.amount FROM expenseDtl ed WHERE user_userID = :user_UserID LIMIT 3
-            UNION ALL SELECT id.description, id.effectivedate, id.amount FROM incomeDtl id WHERE user_userID = :user_UserID LIMIT 2";');
-        $stmt->bindParam(':user_userID', $userID, PDO::PARAM_STR);
+        $stmt = $this->_conn->prepare(
+            'SELECT description, date, amount ' .
+            'FROM ' .
+                '((SELECT e.description, e.duedate as date, e.amount ' .
+                'FROM expenseDtl AS e ' .
+                'WHERE e.user_userID = ' . $userID . ' ) ' .
+                'UNION ' .
+                '(SELECT i.description, i.effectivedate as date, i.amount ' .
+                'FROM incomeDtl AS i ' .
+                'WHERE i.user_userID = ' . $userID . ' ))' .
+            'AS t ' .
+            'WHERE date <= CURRENT_DATE() ' .
+            'ORDER BY date DESC ' .
+            'LIMIT 5 '
+            
+            );
         
         try {
             $results = $stmt->execute();
@@ -455,19 +556,20 @@ class DbOperator
                 $expenseType = $row['expenseType'];
                 $amount = $row['amount'];
                 $userID = $row['user_userID'];
-                $duedate = $row['duedate'];
-                $createdate = $row['createdate'];
+                $dueDate = $row['date'];
+                $createDate = $row['createdate'];
                 
                 //create new incomeitem object 
-                $income = new ExpenseItem($amount,$expenseType,$createdate,$duedate,$expenseID);
+                $income = new ExpenseItem($amount,$expenseType,$createDate,$dueDate,$expenseID);
+                $income->setDescription($desc);
                 //add object to array
-                array_push($resultArray,$expense);                
+                array_push($resultArray,$income);
             }
             
             return $resultArray;
         
         } catch (PDOException $e) {
-            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
+            die ("(!) There was an error pulling last 5 transaction for " . $userID . ": " . $e);
         }        
    
           
@@ -488,23 +590,140 @@ class DbOperator
         
     }
     
+    
     /**
-     *Updates expense record by ExpenseID
+     * Grab the sum of all income that exist in the database for the
+     * specified user in the specified month.
+     * @param $id int User's databse record number
+     * @param $month int month number to operate with
+     * @return $results array() collection of income transactions
      */
-    public function updateExpenseRecordByID($expenseID){
-           $stmt = $this->_conn->prepare('Update');
-            $stmt->bindParam(':user_userID', $expenseID, PDO::PARAM_STR);
+    public function getTotalIncomeByDate($id, $month, $year) {
+        // Prepare PDO query
+        $stmt = $this->_conn->prepare(
+            'SELECT SUM(amount) as total ' .
+            'FROM incomeDtl ' .
+            'WHERE user_userID = :id ' .
+            'AND MONTH(effectivedate) = :month ' .
+            'AND YEAR(effectivedate) = :year'
+        );
+        
+        // Bind parameters, execute and return
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':month', $month);
+        $stmt->bindParam(':year', $year);
         
         try {
-                        
-            }
-            
-        
+            $stmt->execute();
         } catch (PDOException $e) {
-            die ("(!) There was an error adding income of amount " . $amount . " to the database... " . $e);
-        }   
+            die('(!) There was an error getting total income for: ' . $id . ':' . $month . '/' . $e);
+        }
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        return $result;
     }
     
+    
+    /**
+     * Grab the sum of all expenses that exist in the database for the
+     * specified user in the specified month.
+     * @param $id int User's databse record number
+     * @param $month int month number to operate with
+     * @return $results array() collection of expense transactions
+     */
+    public function getTotalExpenseByDate($id, $month, $year) {
+        $stmt = $this->_conn->prepare(
+            'SELECT SUM(amount) as total ' .
+            'FROM expenseDtl ' .
+            'WHERE user_userID = :id ' .
+            'AND MONTH(duedate) = :month ' .
+            'AND YEAR(duedate) = :year'
+        );
+        
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':month', $month);
+        $stmt->bindParam(':year', $year);
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die('(!) There was an error getting total expense for: ' . $id . ':' . $month . '/' . $e);
+        }
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        return $result;
+    }
+    
+    
+    /**
+     * Grab the sum of all expenses that exist in the database for each
+     * category list for the specified user in the specified month.
+     * @param $id int User's databse record number
+     * @param $month int month number to operate with
+     * @return $results array() collection of category-amount pairs
+     */
+    public function getTotalExpenseByCategory($id, $month, $year) {
+        // Prepare MySQL Query
+        $stmt = $this->_conn->prepare(
+            'SELECT expensetype, ROUND(SUM(amount)) AS total ' .
+            'FROM expenseDtl ' .
+            'WHERE user_userID = :id ' .
+            'AND MONTH(duedate) = :month ' .
+            'AND YEAR(duedate) = :year ' .
+            'GROUP BY expensetype ' .
+            'ORDER BY amount DESC'
+        );
+        
+        // Bind Paramters and execute
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':month', $month, PDO::PARAM_INT);
+        $stmt->bindParam(':year', $year, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $results;
+    }
+
+
+    /**
+     * Determines if the specified user is the owner of the specified
+     * transaction record.  Returns true if so, false otherwise.
+     * @param $type String type of transaction
+     * @param $transactionID int transaction record number
+     * @param $userID int user record number
+     * @return boolean true if valid user, false otherwise
+     */
+    public function validTransactionUser($type, $transactionID, $userID) {
+        // Prepare PDO statement
+        $stmt = $this->_conn->prepare(
+            'SELECT CASE user_userID ' .
+            'WHEN :userID ' .
+            'THEN true ' .
+            'ELSE false ' .
+            'END as "validUser" ' .
+            'FROM ' . $type . 'Dtl ' .
+            'WHERE ' . $type . 'id = :transactionID'
+        );
+        
+        // Bind parameters and execute
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->bindParam(':transactionID', $transactionID, PDO::PARAM_INT);
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo '(!) There was an error check user validity: ' . $userID . ' / ' . $transactionID . ' - ' . $e;
+        }
+        
+        // Get and return results
+        //var_dump($stmt->fetch(PDO::FETCH_ASSOC));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC)['validUser'];
+        if ($result === "1") return true;
+        else return false;
+    }
     
 
 }

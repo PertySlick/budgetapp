@@ -2,7 +2,7 @@
    
    <div class="container">
         <div class="container col-md-9 text-left">
-            <h1>Add Expense</h1>
+            <h1>Add Income</h1>
         </div>
         <div class="container col-md-8">
             <form action="addincome" method="POST">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label class="lbl" for="date">Date</label>
-                    <input class="form-control" type="text" name="date">
+                    <input class="form-control" type="date" name="date">
                 </div>
                 <div class="form-group">
                     <label class="lbl" for="amount">Amount</label><br/>
@@ -25,13 +25,15 @@
                     <div class="form-group">
                      <label class="lbl" for="frequency">Frequency</label><br/>
                      <select class="form-control" name="frequency">
+                     <!--
                      <option value="Daily">Daily</option>
                      <option value="Weekly">Weekly</option>
                      <option value="Bi-Weekly">Bi-Weekly</option>
+                     -->
                      <option value="Monthly">Monthly</option>
-                     <option value="Semi-Annually">Semi Annually</option>
+                     <!--<option value="Semi-Annually">Semi Annually</option>
                      <option value="Quarterly">Quarterly</option>
-                     <option value="Annual">Annual</option>
+                     <option value="Annual">Annual</option>-->
                 </div>
                     <br>
                 <div class="row col-md-9 col-md-offset-3">
